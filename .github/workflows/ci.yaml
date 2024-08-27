@@ -1,0 +1,71 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - "feat/**"
+      - "refactor/**"
+      - "fix/**"
+  pull_request:
+    branches:
+      - "main"
+  workflow_call:
+
+permissions: write-all
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        goversion:
+          - "1.22.0"
+          - "1.23.0"
+          - "stable"
+    steps:
+      - uses: Kesin11/actions-timeline@v2
+
+      - uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.goversion }}
+          cache: true
+          cache-dependency-path: go.sum
+
+      - name: Setup xc
+        uses: joerdav/setup-xc@v0.0.3
+
+      - name: Setup deps
+        run: |
+          xc setup:deps
+
+      - name: Setup GOEXPERIMENT
+        working-directory: ./example
+        run: |
+          xc setup:goenv
+
+      - name: Setup filtgen
+        working-directory: ./example
+        run: |
+          xc install:local
+
+      - name: Go Generate
+        working-directory: ./example
+        run: |
+          go generate ./...
+          git diff --exit-code
+
+      - name: Run generated code
+        working-directory: ./example
+        run: |
+          go run ./main.go
+
+      - name: golangci-lint with reviedog
+        uses: reviewdog/action-golangci-lint@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          level: warning
+          golangci_lint_flags: "--config=.golangci.yaml"
