@@ -2,12 +2,12 @@
 package main
 
 import (
-    s "database/sql"
+	"iter"
+	"strings"
 	"errors"
 	"github.com/miyamo2/filtgen-example/pkg/bar"
-    "iter"
-	"strings"
 	"time"
+	s "database/sql"
 )
 
 // FooSlice is a defined-type of []User.
