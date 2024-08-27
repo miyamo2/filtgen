@@ -60,8 +60,7 @@ jobs:
       - name: Run generated code
         working-directory: ./example
         run: |
-          go mod tidy
-          go run ./main.go
+          go build -o main && ./main
 
       - name: golangci-lint with reviedog
         uses: reviewdog/action-golangci-lint@v2
