@@ -31,6 +31,7 @@ func init() {
 				"toLowerCamel":               strcase.ToLowerCamel,
 				"joinPackageNameAndTypeName": joinPackageNameAndTypeName,
 				"importToPath":               importToPath,
+				"version":                    func() string { return fmt.Sprintf("@%s", Version) },
 			}).
 		Parse(tplStr))
 }
