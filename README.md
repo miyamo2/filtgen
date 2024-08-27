@@ -1,5 +1,12 @@
 # filtgen
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/miyamo2/filtgen.svg)](https://pkg.go.dev/github.com/miyamo2/filtgen)
+[![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/miyamo2/filtgen)](https://img.shields.io/github/go-mod/go-version/miyamo2/filtgen)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/miyamo2/filtgen)](https://img.shields.io/github/v/release/miyamo2/filtgen)
+[![ci](https://github.com/miyamo2/filtgen/actions/workflows/ci.yaml/badge.svg)](https://github.com/miyamo2/filtgen/actions/workflows/ci.yaml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/miyamo2/filtgen)](https://goreportcard.com/report/github.com/miyamo2/filtgen)
+[![GitHub License](https://img.shields.io/github/license/miyamo2/filtgen?&color=blue)](https://img.shields.io/github/license/miyamo2/filtgen?&color=blue)
+
 CLI tool for generating iterators that selects items by their field values.
 
 ## Quick Start
@@ -141,26 +148,26 @@ Equivalence is determined by `errors.Is`.
 
 | Type\Filter  | `XxxEq` | `XxxNe` | `XxxGt` | `XxxLt` | `XxxGe` | `XxxLe` | `XxxMatches` | `XxxIs` | `XxxIsnt` |
 |--------------|---------|---------|---------|---------|---------|---------|--------------|---------|-----------|
-| `string`     | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️           | ❌       | ❌         |
-| `int`        | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️           | ❌       | ❌         |
-| `int8`       | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️           | ❌       | ❌         |
-| `int16`      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️           | ❌       | ❌         |
-| `int32`      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️           | ❌       | ❌         |
-| `int64`      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️           | ❌       | ❌         |
-| `uint`       | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️           | ❌       | ❌         |
-| `uint8`      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️           | ❌       | ❌         |
-| `uint16`     | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️           | ❌       | ❌         |
-| `uint32`     | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️           | ❌       | ❌         |
-| `uint64`     | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️           | ❌       | ❌         |
-| `float32`    | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️           | ❌       | ❌         |
-| `float64`    | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️           | ❌       | ❌         |
-| `complex64`  | ❌       | ❌       | ❌       | ❌       | ❌       | ❌       | ✔️           | ❌       | ❌         |
-| `complex128` | ❌       | ❌       | ❌       | ❌       | ❌       | ❌       | ✔️           | ❌       | ❌         |
-| `byte`       | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️           | ❌       | ❌         |
-| `rune`       | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️      | ✔️           | ❌       | ❌         |
-| `error`      | ❌       | ❌       | ❌       | ❌       | ❌       | ❌       | ✔️           | ✔️      | ✔️        |
-| `bool`       | ✔️      | ✔️      | ❌       | ❌       | ❌       | ❌       | ✔️           | ❌       | ❌         |
-| other-types  | ❌       | ❌       | ❌       | ❌       | ❌       | ❌       | ✔️           | ❌       | ❌         |
+| `string`     | ✅       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅            | ❌       | ❌         |
+| `int`        | ✅       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅            | ❌       | ❌         |
+| `int8`       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅            | ❌       | ❌         |
+| `int16`      | ✅       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅            | ❌       | ❌         |
+| `int32`      | ✅       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅            | ❌       | ❌         |
+| `int64`      | ✅       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅            | ❌       | ❌         |
+| `uint`       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅            | ❌       | ❌         |
+| `uint8`      | ✅       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅            | ❌       | ❌         |
+| `uint16`     | ✅       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅            | ❌       | ❌         |
+| `uint32`     | ✅       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅            | ❌       | ❌         |
+| `uint64`     | ✅       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅            | ❌       | ❌         |
+| `float32`    | ✅       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅            | ❌       | ❌         |
+| `float64`    | ✅       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅            | ❌       | ❌         |
+| `complex64`  | ❌       | ❌       | ❌       | ❌       | ❌       | ❌       | ✅            | ❌       | ❌         |
+| `complex128` | ❌       | ❌       | ❌       | ❌       | ❌       | ❌       | ✅            | ❌       | ❌         |
+| `byte`       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅            | ❌       | ❌         |
+| `rune`       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅       | ✅            | ❌       | ❌         |
+| `error`      | ❌       | ❌       | ❌       | ❌       | ❌       | ❌       | ✅            | ✅       | ✅         |
+| `bool`       | ✅       | ✅       | ❌       | ❌       | ❌       | ❌       | ✅            | ❌       | ❌         |
+| other-types  | ❌       | ❌       | ❌       | ❌       | ❌       | ❌       | ✅            | ❌       | ❌         |
 
 ## `filtgen` tags
 
