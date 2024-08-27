@@ -135,39 +135,149 @@ Method name is determined by the field name; e.g. `Name` -> `NameEq`.
 
 Selects iterator items whose field values are equal to the specified value.
 
+```go
+type User struct {
+    Name string `filtgen:"eq"`
+}
+```
+
+```go
+for i, v := range UserSlice(s).NameEq("Alice") {
+    fmt.Printf("%d: %s\n", i, v.Name)
+}
+```
+
 #### `XxxNe`
 
 Selects iterator items whose field values are not equal to the specified value.
+
+```go
+type User struct {
+    Name string `filtgen:"ne"`
+}
+```
+
+```go
+for i, v := range UserSlice(s).NameNe("Alice") {
+    fmt.Printf("%d: %s\n", i, v.Name)
+}
+```
 
 #### `XxxGt`
 
 Selects iterator items whose field values are greater than the specified value.
 
+```go
+type User struct {
+    Name string `filtgen:"gt"`
+}
+```
+
+```go
+for i, v := range UserSlice(s).NameGt("Alice") {
+    fmt.Printf("%d: %s\n", i, v.Name)
+}
+```
+
 #### `XxxLt`
 
 Selects iterator items whose field values are less than the specified value.
+
+```go
+type User struct {
+    Name string `filtgen:"lt"`
+}
+```
+
+```go
+for i, v := range UserSlice(s).NameLt("Alice") {
+    fmt.Printf("%d: %s\n", i, v.Name)
+}
+```
 
 #### `XxxGe`
 
 Selects iterator items whose field values are greater than or equal to the specified value.
 
+```go
+type User struct {
+    Name string `filtgen:"ge"`
+}
+```
+
+```go
+for i, v := range UserSlice(s).NameGe("Alice") {
+    fmt.Printf("%d: %s\n", i, v.Name)
+}
+```
+
 #### `XxxLe`
 
 Selects iterator items whose field values are less than or equal to the specified value.
 
+```go
+type User struct {
+    Name string `filtgen:"le"`
+}
+```
+
+```go
+for i, v := range UserSlice(s).NameLe("Alice") {
+    fmt.Printf("%d: %s\n", i, v.Name)
+}
+```
+
 #### `XxxMatches`
 
-Selects iterator items whose field values match the specified function.
+Selects iterator items whose field values match the specified function.  
+
+```go
+type User struct {
+    Name string `filtgen:"matches"`
+}
+```
+
+```go
+for i, v := range UserSlice(s).NameMatches(func(s string) bool { return strings.HasPrefix(s, "A") }) {
+    fmt.Printf("%d: %s\n", i, v.Name)
+}
+```
 
 #### `XxxIs`
 
 Selects iterator items whose field values are equal to the specified `error`.  
 Equivalence is determined by `errors.Is`.
 
+```go
+type Transaction struct {
+    ID   string `filtgen:"eq"`
+    Err  error  `filtgen:"is"`
+}
+```
+
+```go
+for i, v := range TransactionSlice(s).ErrIs(fmt.Errorf("something")) {
+    fmt.Printf("%d: %s\n", i, v.ID)
+}
+```
+
 #### `XxxIsnt`
 
-Selects iterator items whose field values are not equal to the specified `error`.
+Selects iterator items whose field values are not equal to the specified `error`.  
 Equivalence is determined by `errors.Is`.
+
+```go
+type Transaction struct {
+    ID   string `filtgen:"eq"`
+    Err  error  `filtgen:"isnt"`
+}
+```
+
+```go
+for i, v := range TransactionSlice(s).ErrIsnt(fmt.Errorf("something")) {
+    fmt.Printf("%d: %s\n", i, v.ID)
+}
+```
 
 #### List of compatible filters by type
 
