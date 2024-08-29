@@ -70,8 +70,6 @@ type Field struct {
 	Matches bool
 	Is      bool
 	Isnt    bool
-	As      bool
-	Asnt    bool
 }
 
 // Generate generates the iterator based on the source file.
@@ -241,10 +239,6 @@ FiltersRange:
 			field.Is = true
 		case "isnt":
 			field.Isnt = true
-		case "as":
-			field.As = true
-		case "asnt":
-			field.Asnt = true
 		case "*":
 			field.Eq = true
 			field.Ne = true
@@ -255,8 +249,6 @@ FiltersRange:
 			field.Matches = true
 			field.Is = true
 			field.Isnt = true
-			field.As = true
-			field.Asnt = true
 			break FiltersRange
 		}
 	}
