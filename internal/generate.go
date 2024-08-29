@@ -11,6 +11,7 @@ import (
 	"go/ast"
 	"go/parser"
 	"go/token"
+	"golang.org/x/tools/go/ast/astutil"
 	"os"
 	"reflect"
 	"slices"
@@ -90,66 +91,64 @@ func Generate(ctx context.Context, sourceFileName string) error {
 		Structs: make([]Struct, 0),
 	}
 
-	for _, node := range nodes.Decls {
-		switch node.(type) {
-		case *ast.GenDecl:
-			genDecl := node.(*ast.GenDecl)
-			for _, spec := range genDecl.Specs {
-				switch spec.(type) {
-				case *ast.TypeSpec:
-					typeSpec := spec.(*ast.TypeSpec)
-					switch concreteType := typeSpec.Type.(type) {
-					case *ast.StructType:
-						strct := Struct{
-							Name:   typeSpec.Name.Name,
-							Fields: make([]Field, 0, len(concreteType.Fields.List)),
-						}
-						for _, field := range concreteType.Fields.List {
-							switch ident := field.Type.(type) {
-							case *ast.Ident:
-								fieldType := ident.Name
-								switch fieldType {
-								case "string":
-									output.Imports = addImport(output.Imports, "strings", "")
-								case "error":
-									output.Imports = addImport(output.Imports, "errors", "")
-								}
-								for _, name := range field.Names {
-									tag := field.Tag
-									var tagStr string
-									if tag != nil {
-										tagStr = tag.Value
-									}
-									strct.Fields = append(strct.Fields, newField(ctx, name.Name, "", fieldType, tagStr))
-								}
-							case *ast.SelectorExpr:
-								pkg := ident.X.(*ast.Ident).Name
-								fieldType := ident.Sel.Name
+	astutil.Apply(nodes, nil, func(c *astutil.Cursor) bool {
+		typeSpec, ok := c.Node().(*ast.TypeSpec)
+		if !ok {
+			return true
+		}
+		structType, ok := typeSpec.Type.(*ast.StructType)
+		if !ok {
+			return true
+		}
 
-								if impPath := getImportPath(ctx, imports, pkg); impPath != "" {
-									var alias string
-									if !strings.HasSuffix(impPath, pkg) {
-										alias = pkg
-									}
-									output.Imports = addImport(output.Imports, impPath, alias)
-								}
-
-								for _, name := range field.Names {
-									tag := field.Tag
-									var tagStr string
-									if tag != nil {
-										tagStr = tag.Value
-									}
-									strct.Fields = append(strct.Fields, newField(ctx, name.Name, pkg, fieldType, tagStr))
-								}
-							}
-						}
-						output.Structs = append(output.Structs, strct)
+		strct := Struct{
+			Name:   typeSpec.Name.Name,
+			Fields: make([]Field, 0, len(structType.Fields.List)),
+		}
+		for _, field := range structType.Fields.List {
+			switch ident := field.Type.(type) {
+			case *ast.Ident:
+				fieldType := ident.Name
+				switch fieldType {
+				case "string":
+					output.Imports = addImport(output.Imports, "strings", "")
+				case "error":
+					output.Imports = addImport(output.Imports, "errors", "")
+				}
+				for _, name := range field.Names {
+					tag := field.Tag
+					var tagStr string
+					if tag != nil {
+						tagStr = tag.Value
 					}
+					strct.Fields = append(strct.Fields, newField(ctx, name.Name, "", fieldType, tagStr))
+				}
+			case *ast.SelectorExpr:
+				pkg := ident.X.(*ast.Ident).Name
+				fieldType := ident.Sel.Name
+
+				if impPath := getImportPath(ctx, imports, pkg); impPath != "" {
+					var alias string
+					if !strings.HasSuffix(impPath, pkg) {
+						alias = pkg
+					}
+					output.Imports = addImport(output.Imports, impPath, alias)
+				}
+
+				for _, name := range field.Names {
+					tag := field.Tag
+					var tagStr string
+					if tag != nil {
+						tagStr = tag.Value
+					}
+					strct.Fields = append(strct.Fields, newField(ctx, name.Name, pkg, fieldType, tagStr))
 				}
 			}
 		}
-	}
+		output.Structs = append(output.Structs, strct)
+		return true
+	})
+
 	f, err := os.Create(fileName)
 	err = tpl.Execute(f, output)
 	if err != nil {
