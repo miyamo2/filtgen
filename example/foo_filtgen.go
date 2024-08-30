@@ -4,12 +4,12 @@
 package main
 
 import (
-	s "database/sql"
-	"errors"
-	"github.com/miyamo2/filtgen-example/pkg/bar"
 	"iter"
 	"strings"
+	"errors"
+	"github.com/miyamo2/filtgen-example/pkg/bar"
 	"time"
+	s "database/sql"
 )
 
 // FooSlice is a defined-type of []Foo.
@@ -50,13 +50,13 @@ type FooSeq2[T any] iter.Seq2[T, Foo]
 //
 // 	for k, v := range fooSlice.StringEq("foo")
 func (s FooSlice) StringEq(str string) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if strings.Compare(v.String, str) == 0 && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if strings.Compare(v.String, str) == 0 && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringEq filters the iterator items to [Foo] whose [Foo.String] is equal to the argument.
@@ -65,13 +65,13 @@ func (s FooSlice) StringEq(str string) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.StringEq("foo")
 func (m FooMap[T]) StringEq(str string) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if strings.Compare(v.String, str) == 0 && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if strings.Compare(v.String, str) == 0 && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringEq filters the iterator items to [Foo] whose [Foo.String] is equal to the argument.
@@ -80,13 +80,13 @@ func (m FooMap[T]) StringEq(str string) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.StringEq("foo")
 func (s FooSeq) StringEq(str string) iter.Seq[Foo] {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if strings.Compare(v.String, str) == 0 && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if strings.Compare(v.String, str) == 0 && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // StringEq filters the iterator items to [Foo] whose [Foo.String] is equal to the argument.
@@ -95,13 +95,13 @@ func (s FooSeq) StringEq(str string) iter.Seq[Foo] {
 //
 // 	for k, v := range fooSeq2.StringEq("foo")
 func (s FooSeq2[T]) StringEq(str string) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if strings.Compare(v.String, str) == 0 && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if strings.Compare(v.String, str) == 0 && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringNe filters the iterator items to [Foo] whose [Foo.String] is not equal to the argument.
@@ -110,13 +110,13 @@ func (s FooSeq2[T]) StringEq(str string) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.StringNe("foo")
 func (s FooSlice) StringNe(str string) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if strings.Compare(v.String, str) != 0 && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if strings.Compare(v.String, str) != 0 && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringNe filters the iterator items to [Foo] whose [Foo.String] is not equal to the argument.
@@ -125,13 +125,13 @@ func (s FooSlice) StringNe(str string) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.StringNe("foo")
 func (m FooMap[T]) StringNe(str string) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if strings.Compare(v.String, str) != 0 && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if strings.Compare(v.String, str) != 0 && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringNe filters the iterator items to [Foo] whose [Foo.String] is not equal to the argument.
@@ -140,13 +140,13 @@ func (m FooMap[T]) StringNe(str string) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.StringNe("foo")
 func (s FooSeq) StringNe(str string) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if strings.Compare(v.String, str) != 0 && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if strings.Compare(v.String, str) != 0 && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // StringNe filters the iterator items to [Foo] whose [Foo.String] is not equal to the argument.
@@ -155,13 +155,13 @@ func (s FooSeq) StringNe(str string) FooSeq {
 //
 // 	for k, v := range fooSeq2.StringNe("foo")
 func (s FooSeq2[T]) StringNe(str string) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if strings.Compare(v.String, str) != 0 && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if strings.Compare(v.String, str) != 0 && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringGt filters the iterator items to [Foo] whose [Foo.String] is greater than the argument.
@@ -170,13 +170,13 @@ func (s FooSeq2[T]) StringNe(str string) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.StringGt("foo")
 func (s FooSlice) StringGt(str string) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if strings.Compare(v.String, str) == 1 && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if strings.Compare(v.String, str) == 1 && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringGt filters the iterator items to [Foo] whose [Foo.String] is greater than the argument.
@@ -185,13 +185,13 @@ func (s FooSlice) StringGt(str string) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.StringGt("foo")
 func (m FooMap[T]) StringGt(str string) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if strings.Compare(v.String, str) == 1 && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if strings.Compare(v.String, str) == 1 && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringGt filters the iterator items to [Foo] whose [Foo.String] is greater than the argument.
@@ -200,13 +200,13 @@ func (m FooMap[T]) StringGt(str string) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.StringGt("foo")
 func (s FooSeq) StringGt(str string) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if strings.Compare(v.String, str) == 1 && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if strings.Compare(v.String, str) == 1 && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // StringGt filters the iterator items to [Foo] whose [Foo.String] is greater than the argument.
@@ -215,13 +215,13 @@ func (s FooSeq) StringGt(str string) FooSeq {
 //
 // 	for k, v := range fooSeq2.StringGt("foo")
 func (s FooSeq2[T]) StringGt(str string) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if strings.Compare(v.String, str) == 1 && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if strings.Compare(v.String, str) == 1 && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringLt filters the iterator items to [Foo] whose [Foo.String] is less than the argument.
@@ -230,13 +230,13 @@ func (s FooSeq2[T]) StringGt(str string) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.StringLt("foo")
 func (s FooSlice) StringLt(str string) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if strings.Compare(v.String, str) == -1 && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if strings.Compare(v.String, str) == -1 && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringLt filters the iterator items to [Foo] whose [Foo.String] is less than the argument.
@@ -245,13 +245,13 @@ func (s FooSlice) StringLt(str string) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.StringLt("foo")
 func (m FooMap[T]) StringLt(str string) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if strings.Compare(v.String, str) == -1 && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if strings.Compare(v.String, str) == -1 && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringLt filters the iterator items to [Foo] whose [Foo.String] is less than the argument.
@@ -260,13 +260,13 @@ func (m FooMap[T]) StringLt(str string) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.StringLt("foo")
 func (s FooSeq) StringLt(str string) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if strings.Compare(v.String, str) == -1 && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if strings.Compare(v.String, str) == -1 && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // StringLt filters the iterator items to [Foo] whose [Foo.String] is less than the argument.
@@ -275,13 +275,13 @@ func (s FooSeq) StringLt(str string) FooSeq {
 //
 // 	for k, v := range fooSeq2.StringLt("foo")
 func (s FooSeq2[T]) StringLt(str string) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if strings.Compare(v.String, str) == -1 && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if strings.Compare(v.String, str) == -1 && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringGe filters the iterator items to [Foo] whose [Foo.String] is greater than or equal to the argument.
@@ -290,13 +290,13 @@ func (s FooSeq2[T]) StringLt(str string) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.StringGe("foo")
 func (s FooSlice) StringGe(str string) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if strings.Compare(v.String, str) >= 0 && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if strings.Compare(v.String, str) >= 0 && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringGe filters the iterator items to [Foo] whose [Foo.String] is greater than or equal to the argument.
@@ -305,13 +305,13 @@ func (s FooSlice) StringGe(str string) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.StringGe("foo")
 func (m FooMap[T]) StringGe(str string) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if strings.Compare(v.String, str) >= 0 && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if strings.Compare(v.String, str) >= 0 && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringGe filters the iterator items to [Foo] whose [Foo.String] is greater than or equal to the argument.
@@ -320,13 +320,13 @@ func (m FooMap[T]) StringGe(str string) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.StringGe("foo")
 func (s FooSeq) StringGe(str string) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if strings.Compare(v.String, str) >= 0 && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if strings.Compare(v.String, str) >= 0 && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // StringGe filters the iterator items to [Foo] whose [Foo.String] is greater than or equal to the argument.
@@ -335,13 +335,13 @@ func (s FooSeq) StringGe(str string) FooSeq {
 //
 // 	for k, v := range fooSeq2.StringGe("foo")
 func (s FooSeq2[T]) StringGe(str string) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if strings.Compare(v.String, str) >= 0 && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if strings.Compare(v.String, str) >= 0 && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringLe filters the iterator items to [Foo] whose [Foo.String] is less than or equal to the argument.
@@ -350,13 +350,13 @@ func (s FooSeq2[T]) StringGe(str string) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.StringLe("foo")
 func (s FooSlice) StringLe(str string) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if strings.Compare(v.String, str) <= 0 && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if strings.Compare(v.String, str) <= 0 && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringLe filters the iterator items to [Foo] whose [Foo.String] is less than or equal to the argument.
@@ -365,13 +365,13 @@ func (s FooSlice) StringLe(str string) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.StringLe("foo")
 func (m FooMap[T]) StringLe(str string) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if strings.Compare(v.String, str) <= 0 && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if strings.Compare(v.String, str) <= 0 && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringLe filters the iterator items to [Foo] whose [Foo.String] is less than or equal to the argument.
@@ -380,13 +380,13 @@ func (m FooMap[T]) StringLe(str string) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.StringLe("foo")
 func (s FooSeq) StringLe(str string) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if strings.Compare(v.String, str) <= 0 && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if strings.Compare(v.String, str) <= 0 && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // StringLe filters the iterator items to [Foo] whose [Foo.String] is less than or equal to the argument.
@@ -395,13 +395,13 @@ func (s FooSeq) StringLe(str string) FooSeq {
 //
 // 	for k, v := range fooSeq2.StringLe("foo")
 func (s FooSeq2[T]) StringLe(str string) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if strings.Compare(v.String, str) <= 0 && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if strings.Compare(v.String, str) <= 0 && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringMatches filters the iterator items to [Foo] whose [Foo.String] matches the condition of the argument.
@@ -410,13 +410,13 @@ func (s FooSeq2[T]) StringLe(str string) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.String(func(str string) bool { return strings.Contains(str, "foo") })
 func (s FooSlice) StringMatches(matcher func(string) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.String) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.String) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringMatches filters the iterator items to [Foo] whose [Foo.String] matches the condition of the argument.
@@ -425,13 +425,13 @@ func (s FooSlice) StringMatches(matcher func(string) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.String(func(str string) bool { return strings.Contains(str, "foo") })
 func (m FooMap[T]) StringMatches(matcher func(string) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.String) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.String) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // StringMatches filters the iterator items to [Foo] whose [Foo.String] matches the condition of the argument.
@@ -440,13 +440,13 @@ func (m FooMap[T]) StringMatches(matcher func(string) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.String(func(str string) bool { return strings.Contains(str, "foo") })
 func (s FooSeq) StringMatches(matcher func(string) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.String) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.String) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // StringMatches filters the iterator items to [Foo] whose [Foo.String] matches the condition of the argument.
@@ -455,13 +455,13 @@ func (s FooSeq) StringMatches(matcher func(string) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.String(func(str string) bool { return strings.Contains(str, "foo") })
 func (s FooSeq2[T]) StringMatches(matcher func(string) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.String) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.String) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntEq filters the iterator items to [Foo] whose [Foo.Int] is equal to the argument.
@@ -470,13 +470,13 @@ func (s FooSeq2[T]) StringMatches(matcher func(string) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.IntEq(1)
 func (s FooSlice) IntEq(val int) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntEq filters the iterator items to [Foo] whose [Foo.Int] is equal to the argument.
@@ -485,13 +485,13 @@ func (s FooSlice) IntEq(val int) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.IntEq(1)
 func (m FooMap[T]) IntEq(val int) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntEq filters the iterator items to [Foo] whose [Foo.Int] is equal to the argument.
@@ -500,13 +500,13 @@ func (m FooMap[T]) IntEq(val int) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.IntEq(1)
 func (s FooSeq) IntEq(val int) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int == val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int == val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // IntEq filters the iterator items to [Foo] whose [Foo.Int] is equal to the argument.
@@ -515,13 +515,13 @@ func (s FooSeq) IntEq(val int) FooSeq {
 //
 // 	for k, v := range fooSeq2.IntEq(1)
 func (s FooSeq2[T]) IntEq(val int) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntNe filters the iterator items to [Foo] whose [Foo.Int] is not equal to the argument.
@@ -530,13 +530,13 @@ func (s FooSeq2[T]) IntEq(val int) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.IntNe(1)
 func (s FooSlice) IntNe(val int) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntNe filters the iterator items to [Foo] whose [Foo.Int] is not equal to the argument.
@@ -545,13 +545,13 @@ func (s FooSlice) IntNe(val int) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.IntNe(1)
 func (m FooMap[T]) IntNe(val int) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntNe filters the iterator items to [Foo] whose [Foo.Int] is not equal to the argument.
@@ -560,13 +560,13 @@ func (m FooMap[T]) IntNe(val int) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.IntNe(1)
 func (s FooSeq) IntNe(val int) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int != val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int != val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // IntNe filters the iterator items to [Foo] whose [Foo.Int] is not equal to the argument.
@@ -575,13 +575,13 @@ func (s FooSeq) IntNe(val int) FooSeq {
 //
 // 	for k, v := range fooSeq2.IntNe(1)
 func (s FooSeq2[T]) IntNe(val int) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntGt filters the iterator items to [Foo] whose [Foo.Int] is greater than the argument.
@@ -590,13 +590,13 @@ func (s FooSeq2[T]) IntNe(val int) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.IntGt(1)
 func (s FooSlice) IntGt(val int) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntGt filters the iterator items to [Foo] whose [Foo.Int] is greater than the argument.
@@ -605,13 +605,13 @@ func (s FooSlice) IntGt(val int) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.IntGt(1)
 func (m FooMap[T]) IntGt(val int) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntGt filters the iterator items to [Foo] whose [Foo.Int] is greater than the argument.
@@ -620,13 +620,13 @@ func (m FooMap[T]) IntGt(val int) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.IntGt(1)
 func (s FooSeq) IntGt(val int) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int > val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int > val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // IntGt filters the iterator items to [Foo] whose [Foo.Int] is greater than the argument.
@@ -635,13 +635,13 @@ func (s FooSeq) IntGt(val int) FooSeq {
 //
 // 	for k, v := range fooSeq2.IntGt(1)
 func (s FooSeq2[T]) IntGt(val int) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntLt filters the iterator items to [Foo] whose [Foo.Int] is less than the argument.
@@ -650,13 +650,13 @@ func (s FooSeq2[T]) IntGt(val int) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.IntLt(1)
 func (s FooSlice) IntLt(val int) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntLt filters the iterator items to [Foo] whose [Foo.Int] is less than the argument.
@@ -665,13 +665,13 @@ func (s FooSlice) IntLt(val int) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.IntLt(1)
 func (m FooMap[T]) IntLt(val int) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntLt filters the iterator items to [Foo] whose [Foo.Int] is less than the argument.
@@ -680,13 +680,13 @@ func (m FooMap[T]) IntLt(val int) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.IntLt(1)
 func (s FooSeq) IntLt(val int) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int < val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int < val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // IntLt filters the iterator items to [Foo] whose [Foo.Int] is less than the argument.
@@ -695,13 +695,13 @@ func (s FooSeq) IntLt(val int) FooSeq {
 //
 // 	for k, v := range fooSeq2.IntLt(1)
 func (s FooSeq2[T]) IntLt(val int) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntGe filters the iterator items to [Foo] whose [Foo.Int] is greater than or equal to the argument.
@@ -710,13 +710,13 @@ func (s FooSeq2[T]) IntLt(val int) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.IntGe(1)
 func (s FooSlice) IntGe(val int) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntGe filters the iterator items to [Foo] whose [Foo.Int] is greater than or equal to the argument.
@@ -725,13 +725,13 @@ func (s FooSlice) IntGe(val int) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.IntGe(1)
 func (m FooMap[T]) IntGe(val int) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntGe filters the iterator items to [Foo] whose [Foo.Int] is greater than or equal to the argument.
@@ -740,13 +740,13 @@ func (m FooMap[T]) IntGe(val int) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.IntGe(1)
 func (s FooSeq) IntGe(val int) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int >= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int >= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // IntGe filters the iterator items to [Foo] whose [Foo.Int] is greater than or equal to the argument.
@@ -755,13 +755,13 @@ func (s FooSeq) IntGe(val int) FooSeq {
 //
 // 	for k, v := range fooSeq2.IntGe(1)
 func (s FooSeq2[T]) IntGe(val int) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntLe filters the iterator items to [Foo] whose [Foo.Int] is less than or equal to the argument.
@@ -770,13 +770,13 @@ func (s FooSeq2[T]) IntGe(val int) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.IntLe(1)
 func (s FooSlice) IntLe(val int) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntLe filters the iterator items to [Foo] whose [Foo.Int] is less than or equal to the argument.
@@ -785,13 +785,13 @@ func (s FooSlice) IntLe(val int) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.IntLe(1)
 func (m FooMap[T]) IntLe(val int) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntLe filters the iterator items to [Foo] whose [Foo.Int] is less than or equal to the argument.
@@ -800,13 +800,13 @@ func (m FooMap[T]) IntLe(val int) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.IntLe(1)
 func (s FooSeq) IntLe(val int) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int <= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int <= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // IntLe filters the iterator items to [Foo] whose [Foo.Int] is less than or equal to the argument.
@@ -815,13 +815,13 @@ func (s FooSeq) IntLe(val int) FooSeq {
 //
 // 	for k, v := range fooSeq2.IntLe(1)
 func (s FooSeq2[T]) IntLe(val int) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntMatches filters the iterator items to [Foo] whose [Foo.Int] matches the condition of the argument.
@@ -830,13 +830,13 @@ func (s FooSeq2[T]) IntLe(val int) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int(func(val int) bool { return i % 2 == 0 })
 func (s FooSlice) IntMatches(matcher func(int) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Int) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Int) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntMatches filters the iterator items to [Foo] whose [Foo.Int] matches the condition of the argument.
@@ -845,13 +845,13 @@ func (s FooSlice) IntMatches(matcher func(int) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int(func(val int) bool { return i % 2 == 0 })
 func (m FooMap[T]) IntMatches(matcher func(int) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Int) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Int) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // IntMatches filters the iterator items to [Foo] whose [Foo.Int] matches the condition of the argument.
@@ -860,13 +860,13 @@ func (m FooMap[T]) IntMatches(matcher func(int) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int(func(val int) bool { return i % 2 == 0 })
 func (s FooSeq) IntMatches(matcher func(int) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Int) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Int) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // IntMatches filters the iterator items to [Foo] whose [Foo.Int] matches the condition of the argument.
@@ -875,13 +875,13 @@ func (s FooSeq) IntMatches(matcher func(int) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int(func(val int) bool { return i % 2 == 0 })
 func (s FooSeq2[T]) IntMatches(matcher func(int) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Int) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Int) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // BoolEq filters the iterator items to [Foo] whose [Foo.Bool] is equal to the argument.
@@ -890,13 +890,13 @@ func (s FooSeq2[T]) IntMatches(matcher func(int) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.BoolEq(true)
 func (s FooSlice) BoolEq(b bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Bool == b && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Bool == b && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // BoolEq filters the iterator items to [Foo] whose [Foo.Bool] is equal to the argument.
@@ -905,13 +905,13 @@ func (s FooSlice) BoolEq(b bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.BoolEq(true)
 func (m FooMap[T]) BoolEq(b bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Bool == b && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Bool == b && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // BoolEq filters the iterator items to [Foo] whose [Foo.Bool] is equal to the argument.
@@ -920,13 +920,13 @@ func (m FooMap[T]) BoolEq(b bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.BoolEq(true)
 func (s FooSeq) BoolEq(b bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Bool == b && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Bool == b && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // BoolEq filters the iterator items to [Foo] whose [Foo.Bool] is equal to the argument.
@@ -935,13 +935,13 @@ func (s FooSeq) BoolEq(b bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.BoolEq(true)
 func (s FooSeq2[T]) BoolEq(b bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Bool == b && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Bool == b && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // BoolNe filters the iterator items to [Foo] whose [Foo.Bool] is not equal to the argument.
@@ -950,13 +950,13 @@ func (s FooSeq2[T]) BoolEq(b bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.BoolNe(true)
 func (s FooSlice) BoolNe(b bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Bool != b && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Bool != b && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // BoolNe filters the iterator items to [Foo] whose [Foo.Bool] is not equal to the argument.
@@ -965,13 +965,13 @@ func (s FooSlice) BoolNe(b bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.BoolNe(true)
 func (m FooMap[T]) BoolNe(b bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Bool != b && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Bool != b && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // BoolNe filters the iterator items to [Foo] whose [Foo.Bool] is not equal to the argument.
@@ -980,13 +980,13 @@ func (m FooMap[T]) BoolNe(b bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.BoolNe(true)
 func (s FooSeq) BoolNe(b bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Bool != b && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Bool != b && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // BoolNe filters the iterator items to [Foo] whose [Foo.Bool] is not equal to the argument.
@@ -995,13 +995,13 @@ func (s FooSeq) BoolNe(b bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.BoolNe(true)
 func (s FooSeq2[T]) BoolNe(b bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Bool != b && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Bool != b && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // BoolMatches filters the iterator items to [Foo] whose [Foo.Bool] matches the condition of the argument.
@@ -1010,13 +1010,13 @@ func (s FooSeq2[T]) BoolNe(b bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Bool(func(b bool) bool { return b })
 func (s FooSlice) BoolMatches(matcher func(bool) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Bool) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Bool) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // BoolMatches filters the iterator items to [Foo] whose [Foo.Bool] matches the condition of the argument.
@@ -1025,13 +1025,13 @@ func (s FooSlice) BoolMatches(matcher func(bool) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Bool(func(b bool) bool { return b })
 func (m FooMap[T]) BoolMatches(matcher func(bool) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Bool) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Bool) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // BoolMatches filters the iterator items to [Foo] whose [Foo.Bool] matches the condition of the argument.
@@ -1040,13 +1040,13 @@ func (m FooMap[T]) BoolMatches(matcher func(bool) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Bool(func(b bool) bool { return b })
 func (s FooSeq) BoolMatches(matcher func(bool) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Bool) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Bool) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // BoolMatches filters the iterator items to [Foo] whose [Foo.Bool] matches the condition of the argument.
@@ -1055,13 +1055,13 @@ func (s FooSeq) BoolMatches(matcher func(bool) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Bool(func(b bool) bool { return b })
 func (s FooSeq2[T]) BoolMatches(matcher func(bool) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Bool) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Bool) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintEq filters the iterator items to [Foo] whose [Foo.Uint] is equal to the argument.
@@ -1070,13 +1070,13 @@ func (s FooSeq2[T]) BoolMatches(matcher func(bool) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.UintEq(1)
 func (s FooSlice) UintEq(val uint) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintEq filters the iterator items to [Foo] whose [Foo.Uint] is equal to the argument.
@@ -1085,13 +1085,13 @@ func (s FooSlice) UintEq(val uint) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.UintEq(1)
 func (m FooMap[T]) UintEq(val uint) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintEq filters the iterator items to [Foo] whose [Foo.Uint] is equal to the argument.
@@ -1100,13 +1100,13 @@ func (m FooMap[T]) UintEq(val uint) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.UintEq(1)
 func (s FooSeq) UintEq(val uint) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint == val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint == val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // UintEq filters the iterator items to [Foo] whose [Foo.Uint] is equal to the argument.
@@ -1115,13 +1115,13 @@ func (s FooSeq) UintEq(val uint) FooSeq {
 //
 // 	for k, v := range fooSeq2.UintEq(1)
 func (s FooSeq2[T]) UintEq(val uint) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintNe filters the iterator items to [Foo] whose [Foo.Uint] is not equal to the argument.
@@ -1130,13 +1130,13 @@ func (s FooSeq2[T]) UintEq(val uint) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.UintNe(1)
 func (s FooSlice) UintNe(val uint) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintNe filters the iterator items to [Foo] whose [Foo.Uint] is not equal to the argument.
@@ -1145,13 +1145,13 @@ func (s FooSlice) UintNe(val uint) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.UintNe(1)
 func (m FooMap[T]) UintNe(val uint) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintNe filters the iterator items to [Foo] whose [Foo.Uint] is not equal to the argument.
@@ -1160,13 +1160,13 @@ func (m FooMap[T]) UintNe(val uint) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.UintNe(1)
 func (s FooSeq) UintNe(val uint) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint != val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint != val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // UintNe filters the iterator items to [Foo] whose [Foo.Uint] is not equal to the argument.
@@ -1175,13 +1175,13 @@ func (s FooSeq) UintNe(val uint) FooSeq {
 //
 // 	for k, v := range fooSeq2.UintNe(1)
 func (s FooSeq2[T]) UintNe(val uint) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintGt filters the iterator items to [Foo] whose [Foo.Uint] is greater than the argument.
@@ -1190,13 +1190,13 @@ func (s FooSeq2[T]) UintNe(val uint) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.UintGt(1)
 func (s FooSlice) UintGt(val uint) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintGt filters the iterator items to [Foo] whose [Foo.Uint] is greater than the argument.
@@ -1205,13 +1205,13 @@ func (s FooSlice) UintGt(val uint) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.UintGt(1)
 func (m FooMap[T]) UintGt(val uint) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintGt filters the iterator items to [Foo] whose [Foo.Uint] is greater than the argument.
@@ -1220,13 +1220,13 @@ func (m FooMap[T]) UintGt(val uint) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.UintGt(1)
 func (s FooSeq) UintGt(val uint) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint > val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint > val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // UintGt filters the iterator items to [Foo] whose [Foo.Uint] is greater than the argument.
@@ -1235,13 +1235,13 @@ func (s FooSeq) UintGt(val uint) FooSeq {
 //
 // 	for k, v := range fooSeq2.UintGt(1)
 func (s FooSeq2[T]) UintGt(val uint) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintLt filters the iterator items to [Foo] whose [Foo.Uint] is less than the argument.
@@ -1250,13 +1250,13 @@ func (s FooSeq2[T]) UintGt(val uint) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.UintLt(1)
 func (s FooSlice) UintLt(val uint) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintLt filters the iterator items to [Foo] whose [Foo.Uint] is less than the argument.
@@ -1265,13 +1265,13 @@ func (s FooSlice) UintLt(val uint) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.UintLt(1)
 func (m FooMap[T]) UintLt(val uint) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintLt filters the iterator items to [Foo] whose [Foo.Uint] is less than the argument.
@@ -1280,13 +1280,13 @@ func (m FooMap[T]) UintLt(val uint) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.UintLt(1)
 func (s FooSeq) UintLt(val uint) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint < val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint < val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // UintLt filters the iterator items to [Foo] whose [Foo.Uint] is less than the argument.
@@ -1295,13 +1295,13 @@ func (s FooSeq) UintLt(val uint) FooSeq {
 //
 // 	for k, v := range fooSeq2.UintLt(1)
 func (s FooSeq2[T]) UintLt(val uint) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintGe filters the iterator items to [Foo] whose [Foo.Uint] is greater than or equal to the argument.
@@ -1310,13 +1310,13 @@ func (s FooSeq2[T]) UintLt(val uint) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.UintGe(1)
 func (s FooSlice) UintGe(val uint) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintGe filters the iterator items to [Foo] whose [Foo.Uint] is greater than or equal to the argument.
@@ -1325,13 +1325,13 @@ func (s FooSlice) UintGe(val uint) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.UintGe(1)
 func (m FooMap[T]) UintGe(val uint) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintGe filters the iterator items to [Foo] whose [Foo.Uint] is greater than or equal to the argument.
@@ -1340,13 +1340,13 @@ func (m FooMap[T]) UintGe(val uint) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.UintGe(1)
 func (s FooSeq) UintGe(val uint) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint >= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint >= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // UintGe filters the iterator items to [Foo] whose [Foo.Uint] is greater than or equal to the argument.
@@ -1355,13 +1355,13 @@ func (s FooSeq) UintGe(val uint) FooSeq {
 //
 // 	for k, v := range fooSeq2.UintGe(1)
 func (s FooSeq2[T]) UintGe(val uint) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintLe filters the iterator items to [Foo] whose [Foo.Uint] is less than or equal to the argument.
@@ -1370,13 +1370,13 @@ func (s FooSeq2[T]) UintGe(val uint) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.UintLe(1)
 func (s FooSlice) UintLe(val uint) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintLe filters the iterator items to [Foo] whose [Foo.Uint] is less than or equal to the argument.
@@ -1385,13 +1385,13 @@ func (s FooSlice) UintLe(val uint) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.UintLe(1)
 func (m FooMap[T]) UintLe(val uint) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintLe filters the iterator items to [Foo] whose [Foo.Uint] is less than or equal to the argument.
@@ -1400,13 +1400,13 @@ func (m FooMap[T]) UintLe(val uint) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.UintLe(1)
 func (s FooSeq) UintLe(val uint) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint <= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint <= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // UintLe filters the iterator items to [Foo] whose [Foo.Uint] is less than or equal to the argument.
@@ -1415,13 +1415,13 @@ func (s FooSeq) UintLe(val uint) FooSeq {
 //
 // 	for k, v := range fooSeq2.UintLe(1)
 func (s FooSeq2[T]) UintLe(val uint) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintMatches filters the iterator items to [Foo] whose [Foo.Uint] matches the condition of the argument.
@@ -1430,13 +1430,13 @@ func (s FooSeq2[T]) UintLe(val uint) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint(func(val uint) bool { return i % 2 == 0 })
 func (s FooSlice) UintMatches(matcher func(uint) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Uint) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Uint) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintMatches filters the iterator items to [Foo] whose [Foo.Uint] matches the condition of the argument.
@@ -1445,13 +1445,13 @@ func (s FooSlice) UintMatches(matcher func(uint) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint(func(val uint) bool { return i % 2 == 0 })
 func (m FooMap[T]) UintMatches(matcher func(uint) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Uint) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Uint) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintMatches filters the iterator items to [Foo] whose [Foo.Uint] matches the condition of the argument.
@@ -1460,13 +1460,13 @@ func (m FooMap[T]) UintMatches(matcher func(uint) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint(func(val uint) bool { return i % 2 == 0 })
 func (s FooSeq) UintMatches(matcher func(uint) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Uint) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Uint) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // UintMatches filters the iterator items to [Foo] whose [Foo.Uint] matches the condition of the argument.
@@ -1475,13 +1475,13 @@ func (s FooSeq) UintMatches(matcher func(uint) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint(func(val uint) bool { return i % 2 == 0 })
 func (s FooSeq2[T]) UintMatches(matcher func(uint) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Uint) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Uint) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Eq filters the iterator items to [Foo] whose [Foo.Uint8] is equal to the argument.
@@ -1490,13 +1490,13 @@ func (s FooSeq2[T]) UintMatches(matcher func(uint) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint8Eq(1)
 func (s FooSlice) Uint8Eq(val uint8) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint8 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint8 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Eq filters the iterator items to [Foo] whose [Foo.Uint8] is equal to the argument.
@@ -1505,13 +1505,13 @@ func (s FooSlice) Uint8Eq(val uint8) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint8Eq(1)
 func (m FooMap[T]) Uint8Eq(val uint8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint8 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint8 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Eq filters the iterator items to [Foo] whose [Foo.Uint8] is equal to the argument.
@@ -1520,13 +1520,13 @@ func (m FooMap[T]) Uint8Eq(val uint8) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint8Eq(1)
 func (s FooSeq) Uint8Eq(val uint8) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint8 == val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint8 == val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Eq filters the iterator items to [Foo] whose [Foo.Uint8] is equal to the argument.
@@ -1535,13 +1535,13 @@ func (s FooSeq) Uint8Eq(val uint8) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint8Eq(1)
 func (s FooSeq2[T]) Uint8Eq(val uint8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint8 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint8 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Ne filters the iterator items to [Foo] whose [Foo.Uint8] is not equal to the argument.
@@ -1550,13 +1550,13 @@ func (s FooSeq2[T]) Uint8Eq(val uint8) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint8Ne(1)
 func (s FooSlice) Uint8Ne(val uint8) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint8 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint8 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Ne filters the iterator items to [Foo] whose [Foo.Uint8] is not equal to the argument.
@@ -1565,13 +1565,13 @@ func (s FooSlice) Uint8Ne(val uint8) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint8Ne(1)
 func (m FooMap[T]) Uint8Ne(val uint8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint8 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint8 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Ne filters the iterator items to [Foo] whose [Foo.Uint8] is not equal to the argument.
@@ -1580,13 +1580,13 @@ func (m FooMap[T]) Uint8Ne(val uint8) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint8Ne(1)
 func (s FooSeq) Uint8Ne(val uint8) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint8 != val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint8 != val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Ne filters the iterator items to [Foo] whose [Foo.Uint8] is not equal to the argument.
@@ -1595,13 +1595,13 @@ func (s FooSeq) Uint8Ne(val uint8) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint8Ne(1)
 func (s FooSeq2[T]) Uint8Ne(val uint8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint8 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint8 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Gt filters the iterator items to [Foo] whose [Foo.Uint8] is greater than the argument.
@@ -1610,13 +1610,13 @@ func (s FooSeq2[T]) Uint8Ne(val uint8) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint8Gt(1)
 func (s FooSlice) Uint8Gt(val uint8) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint8 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint8 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Gt filters the iterator items to [Foo] whose [Foo.Uint8] is greater than the argument.
@@ -1625,13 +1625,13 @@ func (s FooSlice) Uint8Gt(val uint8) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint8Gt(1)
 func (m FooMap[T]) Uint8Gt(val uint8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint8 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint8 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Gt filters the iterator items to [Foo] whose [Foo.Uint8] is greater than the argument.
@@ -1640,13 +1640,13 @@ func (m FooMap[T]) Uint8Gt(val uint8) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint8Gt(1)
 func (s FooSeq) Uint8Gt(val uint8) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint8 > val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint8 > val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Gt filters the iterator items to [Foo] whose [Foo.Uint8] is greater than the argument.
@@ -1655,13 +1655,13 @@ func (s FooSeq) Uint8Gt(val uint8) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint8Gt(1)
 func (s FooSeq2[T]) Uint8Gt(val uint8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint8 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint8 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Lt filters the iterator items to [Foo] whose [Foo.Uint8] is less than the argument.
@@ -1670,13 +1670,13 @@ func (s FooSeq2[T]) Uint8Gt(val uint8) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint8Lt(1)
 func (s FooSlice) Uint8Lt(val uint8) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint8 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint8 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Lt filters the iterator items to [Foo] whose [Foo.Uint8] is less than the argument.
@@ -1685,13 +1685,13 @@ func (s FooSlice) Uint8Lt(val uint8) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint8Lt(1)
 func (m FooMap[T]) Uint8Lt(val uint8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint8 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint8 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Lt filters the iterator items to [Foo] whose [Foo.Uint8] is less than the argument.
@@ -1700,13 +1700,13 @@ func (m FooMap[T]) Uint8Lt(val uint8) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint8Lt(1)
 func (s FooSeq) Uint8Lt(val uint8) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint8 < val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint8 < val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Lt filters the iterator items to [Foo] whose [Foo.Uint8] is less than the argument.
@@ -1715,13 +1715,13 @@ func (s FooSeq) Uint8Lt(val uint8) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint8Lt(1)
 func (s FooSeq2[T]) Uint8Lt(val uint8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint8 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint8 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Ge filters the iterator items to [Foo] whose [Foo.Uint8] is greater than or equal to the argument.
@@ -1730,13 +1730,13 @@ func (s FooSeq2[T]) Uint8Lt(val uint8) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint8Ge(1)
 func (s FooSlice) Uint8Ge(val uint8) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint8 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint8 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Ge filters the iterator items to [Foo] whose [Foo.Uint8] is greater than or equal to the argument.
@@ -1745,13 +1745,13 @@ func (s FooSlice) Uint8Ge(val uint8) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint8Ge(1)
 func (m FooMap[T]) Uint8Ge(val uint8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint8 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint8 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Ge filters the iterator items to [Foo] whose [Foo.Uint8] is greater than or equal to the argument.
@@ -1760,13 +1760,13 @@ func (m FooMap[T]) Uint8Ge(val uint8) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint8Ge(1)
 func (s FooSeq) Uint8Ge(val uint8) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint8 >= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint8 >= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Ge filters the iterator items to [Foo] whose [Foo.Uint8] is greater than or equal to the argument.
@@ -1775,13 +1775,13 @@ func (s FooSeq) Uint8Ge(val uint8) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint8Ge(1)
 func (s FooSeq2[T]) Uint8Ge(val uint8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint8 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint8 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Le filters the iterator items to [Foo] whose [Foo.Uint8] is less than or equal to the argument.
@@ -1790,13 +1790,13 @@ func (s FooSeq2[T]) Uint8Ge(val uint8) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint8Le(1)
 func (s FooSlice) Uint8Le(val uint8) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint8 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint8 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Le filters the iterator items to [Foo] whose [Foo.Uint8] is less than or equal to the argument.
@@ -1805,13 +1805,13 @@ func (s FooSlice) Uint8Le(val uint8) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint8Le(1)
 func (m FooMap[T]) Uint8Le(val uint8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint8 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint8 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Le filters the iterator items to [Foo] whose [Foo.Uint8] is less than or equal to the argument.
@@ -1820,13 +1820,13 @@ func (m FooMap[T]) Uint8Le(val uint8) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint8Le(1)
 func (s FooSeq) Uint8Le(val uint8) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint8 <= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint8 <= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Le filters the iterator items to [Foo] whose [Foo.Uint8] is less than or equal to the argument.
@@ -1835,13 +1835,13 @@ func (s FooSeq) Uint8Le(val uint8) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint8Le(1)
 func (s FooSeq2[T]) Uint8Le(val uint8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint8 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint8 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Matches filters the iterator items to [Foo] whose [Foo.Uint8] matches the condition of the argument.
@@ -1850,13 +1850,13 @@ func (s FooSeq2[T]) Uint8Le(val uint8) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint8(func(val uint8) bool { return i % 2 == 0 })
 func (s FooSlice) Uint8Matches(matcher func(uint8) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Uint8) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Uint8) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Matches filters the iterator items to [Foo] whose [Foo.Uint8] matches the condition of the argument.
@@ -1865,13 +1865,13 @@ func (s FooSlice) Uint8Matches(matcher func(uint8) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint8(func(val uint8) bool { return i % 2 == 0 })
 func (m FooMap[T]) Uint8Matches(matcher func(uint8) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Uint8) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Uint8) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Matches filters the iterator items to [Foo] whose [Foo.Uint8] matches the condition of the argument.
@@ -1880,13 +1880,13 @@ func (m FooMap[T]) Uint8Matches(matcher func(uint8) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint8(func(val uint8) bool { return i % 2 == 0 })
 func (s FooSeq) Uint8Matches(matcher func(uint8) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Uint8) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Uint8) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint8Matches filters the iterator items to [Foo] whose [Foo.Uint8] matches the condition of the argument.
@@ -1895,13 +1895,13 @@ func (s FooSeq) Uint8Matches(matcher func(uint8) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint8(func(val uint8) bool { return i % 2 == 0 })
 func (s FooSeq2[T]) Uint8Matches(matcher func(uint8) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Uint8) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Uint8) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Eq filters the iterator items to [Foo] whose [Foo.Uint16] is equal to the argument.
@@ -1910,13 +1910,13 @@ func (s FooSeq2[T]) Uint8Matches(matcher func(uint8) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint16Eq(1)
 func (s FooSlice) Uint16Eq(val uint16) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint16 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint16 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Eq filters the iterator items to [Foo] whose [Foo.Uint16] is equal to the argument.
@@ -1925,13 +1925,13 @@ func (s FooSlice) Uint16Eq(val uint16) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint16Eq(1)
 func (m FooMap[T]) Uint16Eq(val uint16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint16 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint16 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Eq filters the iterator items to [Foo] whose [Foo.Uint16] is equal to the argument.
@@ -1940,13 +1940,13 @@ func (m FooMap[T]) Uint16Eq(val uint16) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint16Eq(1)
 func (s FooSeq) Uint16Eq(val uint16) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint16 == val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint16 == val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Eq filters the iterator items to [Foo] whose [Foo.Uint16] is equal to the argument.
@@ -1955,13 +1955,13 @@ func (s FooSeq) Uint16Eq(val uint16) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint16Eq(1)
 func (s FooSeq2[T]) Uint16Eq(val uint16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint16 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint16 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Ne filters the iterator items to [Foo] whose [Foo.Uint16] is not equal to the argument.
@@ -1970,13 +1970,13 @@ func (s FooSeq2[T]) Uint16Eq(val uint16) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint16Ne(1)
 func (s FooSlice) Uint16Ne(val uint16) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint16 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint16 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Ne filters the iterator items to [Foo] whose [Foo.Uint16] is not equal to the argument.
@@ -1985,13 +1985,13 @@ func (s FooSlice) Uint16Ne(val uint16) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint16Ne(1)
 func (m FooMap[T]) Uint16Ne(val uint16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint16 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint16 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Ne filters the iterator items to [Foo] whose [Foo.Uint16] is not equal to the argument.
@@ -2000,13 +2000,13 @@ func (m FooMap[T]) Uint16Ne(val uint16) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint16Ne(1)
 func (s FooSeq) Uint16Ne(val uint16) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint16 != val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint16 != val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Ne filters the iterator items to [Foo] whose [Foo.Uint16] is not equal to the argument.
@@ -2015,13 +2015,13 @@ func (s FooSeq) Uint16Ne(val uint16) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint16Ne(1)
 func (s FooSeq2[T]) Uint16Ne(val uint16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint16 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint16 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Gt filters the iterator items to [Foo] whose [Foo.Uint16] is greater than the argument.
@@ -2030,13 +2030,13 @@ func (s FooSeq2[T]) Uint16Ne(val uint16) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint16Gt(1)
 func (s FooSlice) Uint16Gt(val uint16) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint16 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint16 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Gt filters the iterator items to [Foo] whose [Foo.Uint16] is greater than the argument.
@@ -2045,13 +2045,13 @@ func (s FooSlice) Uint16Gt(val uint16) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint16Gt(1)
 func (m FooMap[T]) Uint16Gt(val uint16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint16 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint16 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Gt filters the iterator items to [Foo] whose [Foo.Uint16] is greater than the argument.
@@ -2060,13 +2060,13 @@ func (m FooMap[T]) Uint16Gt(val uint16) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint16Gt(1)
 func (s FooSeq) Uint16Gt(val uint16) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint16 > val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint16 > val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Gt filters the iterator items to [Foo] whose [Foo.Uint16] is greater than the argument.
@@ -2075,13 +2075,13 @@ func (s FooSeq) Uint16Gt(val uint16) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint16Gt(1)
 func (s FooSeq2[T]) Uint16Gt(val uint16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint16 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint16 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Lt filters the iterator items to [Foo] whose [Foo.Uint16] is less than the argument.
@@ -2090,13 +2090,13 @@ func (s FooSeq2[T]) Uint16Gt(val uint16) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint16Lt(1)
 func (s FooSlice) Uint16Lt(val uint16) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint16 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint16 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Lt filters the iterator items to [Foo] whose [Foo.Uint16] is less than the argument.
@@ -2105,13 +2105,13 @@ func (s FooSlice) Uint16Lt(val uint16) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint16Lt(1)
 func (m FooMap[T]) Uint16Lt(val uint16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint16 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint16 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Lt filters the iterator items to [Foo] whose [Foo.Uint16] is less than the argument.
@@ -2120,13 +2120,13 @@ func (m FooMap[T]) Uint16Lt(val uint16) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint16Lt(1)
 func (s FooSeq) Uint16Lt(val uint16) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint16 < val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint16 < val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Lt filters the iterator items to [Foo] whose [Foo.Uint16] is less than the argument.
@@ -2135,13 +2135,13 @@ func (s FooSeq) Uint16Lt(val uint16) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint16Lt(1)
 func (s FooSeq2[T]) Uint16Lt(val uint16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint16 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint16 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Ge filters the iterator items to [Foo] whose [Foo.Uint16] is greater than or equal to the argument.
@@ -2150,13 +2150,13 @@ func (s FooSeq2[T]) Uint16Lt(val uint16) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint16Ge(1)
 func (s FooSlice) Uint16Ge(val uint16) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint16 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint16 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Ge filters the iterator items to [Foo] whose [Foo.Uint16] is greater than or equal to the argument.
@@ -2165,13 +2165,13 @@ func (s FooSlice) Uint16Ge(val uint16) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint16Ge(1)
 func (m FooMap[T]) Uint16Ge(val uint16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint16 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint16 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Ge filters the iterator items to [Foo] whose [Foo.Uint16] is greater than or equal to the argument.
@@ -2180,13 +2180,13 @@ func (m FooMap[T]) Uint16Ge(val uint16) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint16Ge(1)
 func (s FooSeq) Uint16Ge(val uint16) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint16 >= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint16 >= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Ge filters the iterator items to [Foo] whose [Foo.Uint16] is greater than or equal to the argument.
@@ -2195,13 +2195,13 @@ func (s FooSeq) Uint16Ge(val uint16) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint16Ge(1)
 func (s FooSeq2[T]) Uint16Ge(val uint16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint16 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint16 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Le filters the iterator items to [Foo] whose [Foo.Uint16] is less than or equal to the argument.
@@ -2210,13 +2210,13 @@ func (s FooSeq2[T]) Uint16Ge(val uint16) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint16Le(1)
 func (s FooSlice) Uint16Le(val uint16) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint16 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint16 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Le filters the iterator items to [Foo] whose [Foo.Uint16] is less than or equal to the argument.
@@ -2225,13 +2225,13 @@ func (s FooSlice) Uint16Le(val uint16) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint16Le(1)
 func (m FooMap[T]) Uint16Le(val uint16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint16 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint16 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Le filters the iterator items to [Foo] whose [Foo.Uint16] is less than or equal to the argument.
@@ -2240,13 +2240,13 @@ func (m FooMap[T]) Uint16Le(val uint16) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint16Le(1)
 func (s FooSeq) Uint16Le(val uint16) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint16 <= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint16 <= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Le filters the iterator items to [Foo] whose [Foo.Uint16] is less than or equal to the argument.
@@ -2255,13 +2255,13 @@ func (s FooSeq) Uint16Le(val uint16) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint16Le(1)
 func (s FooSeq2[T]) Uint16Le(val uint16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint16 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint16 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Matches filters the iterator items to [Foo] whose [Foo.Uint16] matches the condition of the argument.
@@ -2270,13 +2270,13 @@ func (s FooSeq2[T]) Uint16Le(val uint16) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint16(func(val uint16) bool { return i % 2 == 0 })
 func (s FooSlice) Uint16Matches(matcher func(uint16) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Uint16) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Uint16) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Matches filters the iterator items to [Foo] whose [Foo.Uint16] matches the condition of the argument.
@@ -2285,13 +2285,13 @@ func (s FooSlice) Uint16Matches(matcher func(uint16) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint16(func(val uint16) bool { return i % 2 == 0 })
 func (m FooMap[T]) Uint16Matches(matcher func(uint16) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Uint16) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Uint16) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Matches filters the iterator items to [Foo] whose [Foo.Uint16] matches the condition of the argument.
@@ -2300,13 +2300,13 @@ func (m FooMap[T]) Uint16Matches(matcher func(uint16) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint16(func(val uint16) bool { return i % 2 == 0 })
 func (s FooSeq) Uint16Matches(matcher func(uint16) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Uint16) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Uint16) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint16Matches filters the iterator items to [Foo] whose [Foo.Uint16] matches the condition of the argument.
@@ -2315,13 +2315,13 @@ func (s FooSeq) Uint16Matches(matcher func(uint16) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint16(func(val uint16) bool { return i % 2 == 0 })
 func (s FooSeq2[T]) Uint16Matches(matcher func(uint16) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Uint16) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Uint16) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Eq filters the iterator items to [Foo] whose [Foo.Uint32] is equal to the argument.
@@ -2330,13 +2330,13 @@ func (s FooSeq2[T]) Uint16Matches(matcher func(uint16) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint32Eq(1)
 func (s FooSlice) Uint32Eq(val uint32) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint32 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint32 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Eq filters the iterator items to [Foo] whose [Foo.Uint32] is equal to the argument.
@@ -2345,13 +2345,13 @@ func (s FooSlice) Uint32Eq(val uint32) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint32Eq(1)
 func (m FooMap[T]) Uint32Eq(val uint32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint32 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint32 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Eq filters the iterator items to [Foo] whose [Foo.Uint32] is equal to the argument.
@@ -2360,13 +2360,13 @@ func (m FooMap[T]) Uint32Eq(val uint32) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint32Eq(1)
 func (s FooSeq) Uint32Eq(val uint32) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint32 == val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint32 == val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Eq filters the iterator items to [Foo] whose [Foo.Uint32] is equal to the argument.
@@ -2375,13 +2375,13 @@ func (s FooSeq) Uint32Eq(val uint32) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint32Eq(1)
 func (s FooSeq2[T]) Uint32Eq(val uint32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint32 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint32 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Ne filters the iterator items to [Foo] whose [Foo.Uint32] is not equal to the argument.
@@ -2390,13 +2390,13 @@ func (s FooSeq2[T]) Uint32Eq(val uint32) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint32Ne(1)
 func (s FooSlice) Uint32Ne(val uint32) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint32 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint32 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Ne filters the iterator items to [Foo] whose [Foo.Uint32] is not equal to the argument.
@@ -2405,13 +2405,13 @@ func (s FooSlice) Uint32Ne(val uint32) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint32Ne(1)
 func (m FooMap[T]) Uint32Ne(val uint32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint32 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint32 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Ne filters the iterator items to [Foo] whose [Foo.Uint32] is not equal to the argument.
@@ -2420,13 +2420,13 @@ func (m FooMap[T]) Uint32Ne(val uint32) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint32Ne(1)
 func (s FooSeq) Uint32Ne(val uint32) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint32 != val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint32 != val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Ne filters the iterator items to [Foo] whose [Foo.Uint32] is not equal to the argument.
@@ -2435,13 +2435,13 @@ func (s FooSeq) Uint32Ne(val uint32) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint32Ne(1)
 func (s FooSeq2[T]) Uint32Ne(val uint32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint32 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint32 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Gt filters the iterator items to [Foo] whose [Foo.Uint32] is greater than the argument.
@@ -2450,13 +2450,13 @@ func (s FooSeq2[T]) Uint32Ne(val uint32) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint32Gt(1)
 func (s FooSlice) Uint32Gt(val uint32) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint32 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint32 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Gt filters the iterator items to [Foo] whose [Foo.Uint32] is greater than the argument.
@@ -2465,13 +2465,13 @@ func (s FooSlice) Uint32Gt(val uint32) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint32Gt(1)
 func (m FooMap[T]) Uint32Gt(val uint32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint32 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint32 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Gt filters the iterator items to [Foo] whose [Foo.Uint32] is greater than the argument.
@@ -2480,13 +2480,13 @@ func (m FooMap[T]) Uint32Gt(val uint32) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint32Gt(1)
 func (s FooSeq) Uint32Gt(val uint32) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint32 > val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint32 > val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Gt filters the iterator items to [Foo] whose [Foo.Uint32] is greater than the argument.
@@ -2495,13 +2495,13 @@ func (s FooSeq) Uint32Gt(val uint32) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint32Gt(1)
 func (s FooSeq2[T]) Uint32Gt(val uint32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint32 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint32 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Lt filters the iterator items to [Foo] whose [Foo.Uint32] is less than the argument.
@@ -2510,13 +2510,13 @@ func (s FooSeq2[T]) Uint32Gt(val uint32) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint32Lt(1)
 func (s FooSlice) Uint32Lt(val uint32) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint32 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint32 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Lt filters the iterator items to [Foo] whose [Foo.Uint32] is less than the argument.
@@ -2525,13 +2525,13 @@ func (s FooSlice) Uint32Lt(val uint32) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint32Lt(1)
 func (m FooMap[T]) Uint32Lt(val uint32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint32 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint32 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Lt filters the iterator items to [Foo] whose [Foo.Uint32] is less than the argument.
@@ -2540,13 +2540,13 @@ func (m FooMap[T]) Uint32Lt(val uint32) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint32Lt(1)
 func (s FooSeq) Uint32Lt(val uint32) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint32 < val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint32 < val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Lt filters the iterator items to [Foo] whose [Foo.Uint32] is less than the argument.
@@ -2555,13 +2555,13 @@ func (s FooSeq) Uint32Lt(val uint32) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint32Lt(1)
 func (s FooSeq2[T]) Uint32Lt(val uint32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint32 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint32 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Ge filters the iterator items to [Foo] whose [Foo.Uint32] is greater than or equal to the argument.
@@ -2570,13 +2570,13 @@ func (s FooSeq2[T]) Uint32Lt(val uint32) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint32Ge(1)
 func (s FooSlice) Uint32Ge(val uint32) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint32 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint32 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Ge filters the iterator items to [Foo] whose [Foo.Uint32] is greater than or equal to the argument.
@@ -2585,13 +2585,13 @@ func (s FooSlice) Uint32Ge(val uint32) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint32Ge(1)
 func (m FooMap[T]) Uint32Ge(val uint32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint32 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint32 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Ge filters the iterator items to [Foo] whose [Foo.Uint32] is greater than or equal to the argument.
@@ -2600,13 +2600,13 @@ func (m FooMap[T]) Uint32Ge(val uint32) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint32Ge(1)
 func (s FooSeq) Uint32Ge(val uint32) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint32 >= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint32 >= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Ge filters the iterator items to [Foo] whose [Foo.Uint32] is greater than or equal to the argument.
@@ -2615,13 +2615,13 @@ func (s FooSeq) Uint32Ge(val uint32) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint32Ge(1)
 func (s FooSeq2[T]) Uint32Ge(val uint32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint32 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint32 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Le filters the iterator items to [Foo] whose [Foo.Uint32] is less than or equal to the argument.
@@ -2630,13 +2630,13 @@ func (s FooSeq2[T]) Uint32Ge(val uint32) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint32Le(1)
 func (s FooSlice) Uint32Le(val uint32) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint32 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint32 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Le filters the iterator items to [Foo] whose [Foo.Uint32] is less than or equal to the argument.
@@ -2645,13 +2645,13 @@ func (s FooSlice) Uint32Le(val uint32) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint32Le(1)
 func (m FooMap[T]) Uint32Le(val uint32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint32 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint32 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Le filters the iterator items to [Foo] whose [Foo.Uint32] is less than or equal to the argument.
@@ -2660,13 +2660,13 @@ func (m FooMap[T]) Uint32Le(val uint32) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint32Le(1)
 func (s FooSeq) Uint32Le(val uint32) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint32 <= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint32 <= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Le filters the iterator items to [Foo] whose [Foo.Uint32] is less than or equal to the argument.
@@ -2675,13 +2675,13 @@ func (s FooSeq) Uint32Le(val uint32) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint32Le(1)
 func (s FooSeq2[T]) Uint32Le(val uint32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint32 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint32 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Matches filters the iterator items to [Foo] whose [Foo.Uint32] matches the condition of the argument.
@@ -2690,13 +2690,13 @@ func (s FooSeq2[T]) Uint32Le(val uint32) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint32(func(val uint32) bool { return i % 2 == 0 })
 func (s FooSlice) Uint32Matches(matcher func(uint32) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Uint32) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Uint32) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Matches filters the iterator items to [Foo] whose [Foo.Uint32] matches the condition of the argument.
@@ -2705,13 +2705,13 @@ func (s FooSlice) Uint32Matches(matcher func(uint32) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint32(func(val uint32) bool { return i % 2 == 0 })
 func (m FooMap[T]) Uint32Matches(matcher func(uint32) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Uint32) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Uint32) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Matches filters the iterator items to [Foo] whose [Foo.Uint32] matches the condition of the argument.
@@ -2720,13 +2720,13 @@ func (m FooMap[T]) Uint32Matches(matcher func(uint32) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint32(func(val uint32) bool { return i % 2 == 0 })
 func (s FooSeq) Uint32Matches(matcher func(uint32) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Uint32) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Uint32) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint32Matches filters the iterator items to [Foo] whose [Foo.Uint32] matches the condition of the argument.
@@ -2735,13 +2735,13 @@ func (s FooSeq) Uint32Matches(matcher func(uint32) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint32(func(val uint32) bool { return i % 2 == 0 })
 func (s FooSeq2[T]) Uint32Matches(matcher func(uint32) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Uint32) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Uint32) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Eq filters the iterator items to [Foo] whose [Foo.Uint64] is equal to the argument.
@@ -2750,13 +2750,13 @@ func (s FooSeq2[T]) Uint32Matches(matcher func(uint32) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint64Eq(1)
 func (s FooSlice) Uint64Eq(val uint64) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint64 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint64 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Eq filters the iterator items to [Foo] whose [Foo.Uint64] is equal to the argument.
@@ -2765,13 +2765,13 @@ func (s FooSlice) Uint64Eq(val uint64) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint64Eq(1)
 func (m FooMap[T]) Uint64Eq(val uint64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint64 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint64 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Eq filters the iterator items to [Foo] whose [Foo.Uint64] is equal to the argument.
@@ -2780,13 +2780,13 @@ func (m FooMap[T]) Uint64Eq(val uint64) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint64Eq(1)
 func (s FooSeq) Uint64Eq(val uint64) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint64 == val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint64 == val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Eq filters the iterator items to [Foo] whose [Foo.Uint64] is equal to the argument.
@@ -2795,13 +2795,13 @@ func (s FooSeq) Uint64Eq(val uint64) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint64Eq(1)
 func (s FooSeq2[T]) Uint64Eq(val uint64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint64 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint64 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Ne filters the iterator items to [Foo] whose [Foo.Uint64] is not equal to the argument.
@@ -2810,13 +2810,13 @@ func (s FooSeq2[T]) Uint64Eq(val uint64) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint64Ne(1)
 func (s FooSlice) Uint64Ne(val uint64) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint64 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint64 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Ne filters the iterator items to [Foo] whose [Foo.Uint64] is not equal to the argument.
@@ -2825,13 +2825,13 @@ func (s FooSlice) Uint64Ne(val uint64) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint64Ne(1)
 func (m FooMap[T]) Uint64Ne(val uint64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint64 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint64 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Ne filters the iterator items to [Foo] whose [Foo.Uint64] is not equal to the argument.
@@ -2840,13 +2840,13 @@ func (m FooMap[T]) Uint64Ne(val uint64) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint64Ne(1)
 func (s FooSeq) Uint64Ne(val uint64) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint64 != val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint64 != val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Ne filters the iterator items to [Foo] whose [Foo.Uint64] is not equal to the argument.
@@ -2855,13 +2855,13 @@ func (s FooSeq) Uint64Ne(val uint64) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint64Ne(1)
 func (s FooSeq2[T]) Uint64Ne(val uint64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint64 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint64 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Gt filters the iterator items to [Foo] whose [Foo.Uint64] is greater than the argument.
@@ -2870,13 +2870,13 @@ func (s FooSeq2[T]) Uint64Ne(val uint64) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint64Gt(1)
 func (s FooSlice) Uint64Gt(val uint64) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint64 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint64 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Gt filters the iterator items to [Foo] whose [Foo.Uint64] is greater than the argument.
@@ -2885,13 +2885,13 @@ func (s FooSlice) Uint64Gt(val uint64) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint64Gt(1)
 func (m FooMap[T]) Uint64Gt(val uint64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint64 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint64 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Gt filters the iterator items to [Foo] whose [Foo.Uint64] is greater than the argument.
@@ -2900,13 +2900,13 @@ func (m FooMap[T]) Uint64Gt(val uint64) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint64Gt(1)
 func (s FooSeq) Uint64Gt(val uint64) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint64 > val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint64 > val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Gt filters the iterator items to [Foo] whose [Foo.Uint64] is greater than the argument.
@@ -2915,13 +2915,13 @@ func (s FooSeq) Uint64Gt(val uint64) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint64Gt(1)
 func (s FooSeq2[T]) Uint64Gt(val uint64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint64 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint64 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Lt filters the iterator items to [Foo] whose [Foo.Uint64] is less than the argument.
@@ -2930,13 +2930,13 @@ func (s FooSeq2[T]) Uint64Gt(val uint64) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint64Lt(1)
 func (s FooSlice) Uint64Lt(val uint64) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint64 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint64 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Lt filters the iterator items to [Foo] whose [Foo.Uint64] is less than the argument.
@@ -2945,13 +2945,13 @@ func (s FooSlice) Uint64Lt(val uint64) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint64Lt(1)
 func (m FooMap[T]) Uint64Lt(val uint64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint64 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint64 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Lt filters the iterator items to [Foo] whose [Foo.Uint64] is less than the argument.
@@ -2960,13 +2960,13 @@ func (m FooMap[T]) Uint64Lt(val uint64) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint64Lt(1)
 func (s FooSeq) Uint64Lt(val uint64) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint64 < val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint64 < val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Lt filters the iterator items to [Foo] whose [Foo.Uint64] is less than the argument.
@@ -2975,13 +2975,13 @@ func (s FooSeq) Uint64Lt(val uint64) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint64Lt(1)
 func (s FooSeq2[T]) Uint64Lt(val uint64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint64 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint64 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Ge filters the iterator items to [Foo] whose [Foo.Uint64] is greater than or equal to the argument.
@@ -2990,13 +2990,13 @@ func (s FooSeq2[T]) Uint64Lt(val uint64) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint64Ge(1)
 func (s FooSlice) Uint64Ge(val uint64) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint64 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint64 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Ge filters the iterator items to [Foo] whose [Foo.Uint64] is greater than or equal to the argument.
@@ -3005,13 +3005,13 @@ func (s FooSlice) Uint64Ge(val uint64) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint64Ge(1)
 func (m FooMap[T]) Uint64Ge(val uint64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint64 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint64 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Ge filters the iterator items to [Foo] whose [Foo.Uint64] is greater than or equal to the argument.
@@ -3020,13 +3020,13 @@ func (m FooMap[T]) Uint64Ge(val uint64) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint64Ge(1)
 func (s FooSeq) Uint64Ge(val uint64) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint64 >= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint64 >= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Ge filters the iterator items to [Foo] whose [Foo.Uint64] is greater than or equal to the argument.
@@ -3035,13 +3035,13 @@ func (s FooSeq) Uint64Ge(val uint64) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint64Ge(1)
 func (s FooSeq2[T]) Uint64Ge(val uint64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint64 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint64 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Le filters the iterator items to [Foo] whose [Foo.Uint64] is less than or equal to the argument.
@@ -3050,13 +3050,13 @@ func (s FooSeq2[T]) Uint64Ge(val uint64) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint64Le(1)
 func (s FooSlice) Uint64Le(val uint64) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uint64 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uint64 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Le filters the iterator items to [Foo] whose [Foo.Uint64] is less than or equal to the argument.
@@ -3065,13 +3065,13 @@ func (s FooSlice) Uint64Le(val uint64) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint64Le(1)
 func (m FooMap[T]) Uint64Le(val uint64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uint64 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uint64 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Le filters the iterator items to [Foo] whose [Foo.Uint64] is less than or equal to the argument.
@@ -3080,13 +3080,13 @@ func (m FooMap[T]) Uint64Le(val uint64) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint64Le(1)
 func (s FooSeq) Uint64Le(val uint64) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uint64 <= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uint64 <= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Le filters the iterator items to [Foo] whose [Foo.Uint64] is less than or equal to the argument.
@@ -3095,13 +3095,13 @@ func (s FooSeq) Uint64Le(val uint64) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint64Le(1)
 func (s FooSeq2[T]) Uint64Le(val uint64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uint64 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uint64 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Matches filters the iterator items to [Foo] whose [Foo.Uint64] matches the condition of the argument.
@@ -3110,13 +3110,13 @@ func (s FooSeq2[T]) Uint64Le(val uint64) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uint64(func(val uint64) bool { return i % 2 == 0 })
 func (s FooSlice) Uint64Matches(matcher func(uint64) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Uint64) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Uint64) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Matches filters the iterator items to [Foo] whose [Foo.Uint64] matches the condition of the argument.
@@ -3125,13 +3125,13 @@ func (s FooSlice) Uint64Matches(matcher func(uint64) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uint64(func(val uint64) bool { return i % 2 == 0 })
 func (m FooMap[T]) Uint64Matches(matcher func(uint64) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Uint64) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Uint64) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Matches filters the iterator items to [Foo] whose [Foo.Uint64] matches the condition of the argument.
@@ -3140,13 +3140,13 @@ func (m FooMap[T]) Uint64Matches(matcher func(uint64) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uint64(func(val uint64) bool { return i % 2 == 0 })
 func (s FooSeq) Uint64Matches(matcher func(uint64) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Uint64) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Uint64) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Uint64Matches filters the iterator items to [Foo] whose [Foo.Uint64] matches the condition of the argument.
@@ -3155,13 +3155,13 @@ func (s FooSeq) Uint64Matches(matcher func(uint64) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uint64(func(val uint64) bool { return i % 2 == 0 })
 func (s FooSeq2[T]) Uint64Matches(matcher func(uint64) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Uint64) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Uint64) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrEq filters the iterator items to [Foo] whose [Foo.Uintptr] is equal to the argument.
@@ -3170,13 +3170,13 @@ func (s FooSeq2[T]) Uint64Matches(matcher func(uint64) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.UintptrEq(1)
 func (s FooSlice) UintptrEq(val uintptr) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uintptr == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uintptr == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrEq filters the iterator items to [Foo] whose [Foo.Uintptr] is equal to the argument.
@@ -3185,13 +3185,13 @@ func (s FooSlice) UintptrEq(val uintptr) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.UintptrEq(1)
 func (m FooMap[T]) UintptrEq(val uintptr) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uintptr == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uintptr == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrEq filters the iterator items to [Foo] whose [Foo.Uintptr] is equal to the argument.
@@ -3200,13 +3200,13 @@ func (m FooMap[T]) UintptrEq(val uintptr) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.UintptrEq(1)
 func (s FooSeq) UintptrEq(val uintptr) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uintptr == val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uintptr == val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrEq filters the iterator items to [Foo] whose [Foo.Uintptr] is equal to the argument.
@@ -3215,13 +3215,13 @@ func (s FooSeq) UintptrEq(val uintptr) FooSeq {
 //
 // 	for k, v := range fooSeq2.UintptrEq(1)
 func (s FooSeq2[T]) UintptrEq(val uintptr) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uintptr == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uintptr == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrNe filters the iterator items to [Foo] whose [Foo.Uintptr] is not equal to the argument.
@@ -3230,13 +3230,13 @@ func (s FooSeq2[T]) UintptrEq(val uintptr) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.UintptrNe(1)
 func (s FooSlice) UintptrNe(val uintptr) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uintptr != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uintptr != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrNe filters the iterator items to [Foo] whose [Foo.Uintptr] is not equal to the argument.
@@ -3245,13 +3245,13 @@ func (s FooSlice) UintptrNe(val uintptr) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.UintptrNe(1)
 func (m FooMap[T]) UintptrNe(val uintptr) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uintptr != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uintptr != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrNe filters the iterator items to [Foo] whose [Foo.Uintptr] is not equal to the argument.
@@ -3260,13 +3260,13 @@ func (m FooMap[T]) UintptrNe(val uintptr) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.UintptrNe(1)
 func (s FooSeq) UintptrNe(val uintptr) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uintptr != val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uintptr != val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrNe filters the iterator items to [Foo] whose [Foo.Uintptr] is not equal to the argument.
@@ -3275,13 +3275,13 @@ func (s FooSeq) UintptrNe(val uintptr) FooSeq {
 //
 // 	for k, v := range fooSeq2.UintptrNe(1)
 func (s FooSeq2[T]) UintptrNe(val uintptr) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uintptr != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uintptr != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrGt filters the iterator items to [Foo] whose [Foo.Uintptr] is greater than the argument.
@@ -3290,13 +3290,13 @@ func (s FooSeq2[T]) UintptrNe(val uintptr) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.UintptrGt(1)
 func (s FooSlice) UintptrGt(val uintptr) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uintptr > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uintptr > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrGt filters the iterator items to [Foo] whose [Foo.Uintptr] is greater than the argument.
@@ -3305,13 +3305,13 @@ func (s FooSlice) UintptrGt(val uintptr) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.UintptrGt(1)
 func (m FooMap[T]) UintptrGt(val uintptr) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uintptr > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uintptr > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrGt filters the iterator items to [Foo] whose [Foo.Uintptr] is greater than the argument.
@@ -3320,13 +3320,13 @@ func (m FooMap[T]) UintptrGt(val uintptr) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.UintptrGt(1)
 func (s FooSeq) UintptrGt(val uintptr) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uintptr > val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uintptr > val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrGt filters the iterator items to [Foo] whose [Foo.Uintptr] is greater than the argument.
@@ -3335,13 +3335,13 @@ func (s FooSeq) UintptrGt(val uintptr) FooSeq {
 //
 // 	for k, v := range fooSeq2.UintptrGt(1)
 func (s FooSeq2[T]) UintptrGt(val uintptr) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uintptr > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uintptr > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrLt filters the iterator items to [Foo] whose [Foo.Uintptr] is less than the argument.
@@ -3350,13 +3350,13 @@ func (s FooSeq2[T]) UintptrGt(val uintptr) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.UintptrLt(1)
 func (s FooSlice) UintptrLt(val uintptr) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uintptr < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uintptr < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrLt filters the iterator items to [Foo] whose [Foo.Uintptr] is less than the argument.
@@ -3365,13 +3365,13 @@ func (s FooSlice) UintptrLt(val uintptr) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.UintptrLt(1)
 func (m FooMap[T]) UintptrLt(val uintptr) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uintptr < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uintptr < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrLt filters the iterator items to [Foo] whose [Foo.Uintptr] is less than the argument.
@@ -3380,13 +3380,13 @@ func (m FooMap[T]) UintptrLt(val uintptr) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.UintptrLt(1)
 func (s FooSeq) UintptrLt(val uintptr) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uintptr < val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uintptr < val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrLt filters the iterator items to [Foo] whose [Foo.Uintptr] is less than the argument.
@@ -3395,13 +3395,13 @@ func (s FooSeq) UintptrLt(val uintptr) FooSeq {
 //
 // 	for k, v := range fooSeq2.UintptrLt(1)
 func (s FooSeq2[T]) UintptrLt(val uintptr) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uintptr < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uintptr < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrGe filters the iterator items to [Foo] whose [Foo.Uintptr] is greater than or equal to the argument.
@@ -3410,13 +3410,13 @@ func (s FooSeq2[T]) UintptrLt(val uintptr) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.UintptrGe(1)
 func (s FooSlice) UintptrGe(val uintptr) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uintptr >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uintptr >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrGe filters the iterator items to [Foo] whose [Foo.Uintptr] is greater than or equal to the argument.
@@ -3425,13 +3425,13 @@ func (s FooSlice) UintptrGe(val uintptr) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.UintptrGe(1)
 func (m FooMap[T]) UintptrGe(val uintptr) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uintptr >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uintptr >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrGe filters the iterator items to [Foo] whose [Foo.Uintptr] is greater than or equal to the argument.
@@ -3440,13 +3440,13 @@ func (m FooMap[T]) UintptrGe(val uintptr) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.UintptrGe(1)
 func (s FooSeq) UintptrGe(val uintptr) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uintptr >= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uintptr >= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrGe filters the iterator items to [Foo] whose [Foo.Uintptr] is greater than or equal to the argument.
@@ -3455,13 +3455,13 @@ func (s FooSeq) UintptrGe(val uintptr) FooSeq {
 //
 // 	for k, v := range fooSeq2.UintptrGe(1)
 func (s FooSeq2[T]) UintptrGe(val uintptr) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uintptr >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uintptr >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrLe filters the iterator items to [Foo] whose [Foo.Uintptr] is less than or equal to the argument.
@@ -3470,13 +3470,13 @@ func (s FooSeq2[T]) UintptrGe(val uintptr) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.UintptrLe(1)
 func (s FooSlice) UintptrLe(val uintptr) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Uintptr <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Uintptr <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrLe filters the iterator items to [Foo] whose [Foo.Uintptr] is less than or equal to the argument.
@@ -3485,13 +3485,13 @@ func (s FooSlice) UintptrLe(val uintptr) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.UintptrLe(1)
 func (m FooMap[T]) UintptrLe(val uintptr) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Uintptr <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Uintptr <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrLe filters the iterator items to [Foo] whose [Foo.Uintptr] is less than or equal to the argument.
@@ -3500,13 +3500,13 @@ func (m FooMap[T]) UintptrLe(val uintptr) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.UintptrLe(1)
 func (s FooSeq) UintptrLe(val uintptr) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Uintptr <= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Uintptr <= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrLe filters the iterator items to [Foo] whose [Foo.Uintptr] is less than or equal to the argument.
@@ -3515,13 +3515,13 @@ func (s FooSeq) UintptrLe(val uintptr) FooSeq {
 //
 // 	for k, v := range fooSeq2.UintptrLe(1)
 func (s FooSeq2[T]) UintptrLe(val uintptr) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Uintptr <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Uintptr <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrMatches filters the iterator items to [Foo] whose [Foo.Uintptr] matches the condition of the argument.
@@ -3530,13 +3530,13 @@ func (s FooSeq2[T]) UintptrLe(val uintptr) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Uintptr(func(val uintptr) bool { return i % 2 == 0 })
 func (s FooSlice) UintptrMatches(matcher func(uintptr) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Uintptr) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Uintptr) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrMatches filters the iterator items to [Foo] whose [Foo.Uintptr] matches the condition of the argument.
@@ -3545,13 +3545,13 @@ func (s FooSlice) UintptrMatches(matcher func(uintptr) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Uintptr(func(val uintptr) bool { return i % 2 == 0 })
 func (m FooMap[T]) UintptrMatches(matcher func(uintptr) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Uintptr) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Uintptr) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrMatches filters the iterator items to [Foo] whose [Foo.Uintptr] matches the condition of the argument.
@@ -3560,13 +3560,13 @@ func (m FooMap[T]) UintptrMatches(matcher func(uintptr) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Uintptr(func(val uintptr) bool { return i % 2 == 0 })
 func (s FooSeq) UintptrMatches(matcher func(uintptr) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Uintptr) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Uintptr) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // UintptrMatches filters the iterator items to [Foo] whose [Foo.Uintptr] matches the condition of the argument.
@@ -3575,13 +3575,13 @@ func (s FooSeq) UintptrMatches(matcher func(uintptr) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Uintptr(func(val uintptr) bool { return i % 2 == 0 })
 func (s FooSeq2[T]) UintptrMatches(matcher func(uintptr) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Uintptr) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Uintptr) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Eq filters the iterator items to [Foo] whose [Foo.Float32] is equal to the argument.
@@ -3590,13 +3590,13 @@ func (s FooSeq2[T]) UintptrMatches(matcher func(uintptr) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Float32Eq(1)
 func (s FooSlice) Float32Eq(val float32) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Float32 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Float32 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Eq filters the iterator items to [Foo] whose [Foo.Float32] is equal to the argument.
@@ -3605,13 +3605,13 @@ func (s FooSlice) Float32Eq(val float32) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Float32Eq(1)
 func (m FooMap[T]) Float32Eq(val float32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Float32 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Float32 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Eq filters the iterator items to [Foo] whose [Foo.Float32] is equal to the argument.
@@ -3620,13 +3620,13 @@ func (m FooMap[T]) Float32Eq(val float32) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Float32Eq(1)
 func (s FooSeq) Float32Eq(val float32) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Float32 == val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Float32 == val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Eq filters the iterator items to [Foo] whose [Foo.Float32] is equal to the argument.
@@ -3635,13 +3635,13 @@ func (s FooSeq) Float32Eq(val float32) FooSeq {
 //
 // 	for k, v := range fooSeq2.Float32Eq(1)
 func (s FooSeq2[T]) Float32Eq(val float32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Float32 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Float32 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Ne filters the iterator items to [Foo] whose [Foo.Float32] is not equal to the argument.
@@ -3650,13 +3650,13 @@ func (s FooSeq2[T]) Float32Eq(val float32) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Float32Ne(1)
 func (s FooSlice) Float32Ne(val float32) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Float32 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Float32 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Ne filters the iterator items to [Foo] whose [Foo.Float32] is not equal to the argument.
@@ -3665,13 +3665,13 @@ func (s FooSlice) Float32Ne(val float32) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Float32Ne(1)
 func (m FooMap[T]) Float32Ne(val float32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Float32 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Float32 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Ne filters the iterator items to [Foo] whose [Foo.Float32] is not equal to the argument.
@@ -3680,13 +3680,13 @@ func (m FooMap[T]) Float32Ne(val float32) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Float32Ne(1)
 func (s FooSeq) Float32Ne(val float32) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Float32 != val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Float32 != val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Ne filters the iterator items to [Foo] whose [Foo.Float32] is not equal to the argument.
@@ -3695,13 +3695,13 @@ func (s FooSeq) Float32Ne(val float32) FooSeq {
 //
 // 	for k, v := range fooSeq2.Float32Ne(1)
 func (s FooSeq2[T]) Float32Ne(val float32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Float32 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Float32 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Gt filters the iterator items to [Foo] whose [Foo.Float32] is greater than the argument.
@@ -3710,13 +3710,13 @@ func (s FooSeq2[T]) Float32Ne(val float32) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Float32Gt(1)
 func (s FooSlice) Float32Gt(val float32) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Float32 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Float32 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Gt filters the iterator items to [Foo] whose [Foo.Float32] is greater than the argument.
@@ -3725,13 +3725,13 @@ func (s FooSlice) Float32Gt(val float32) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Float32Gt(1)
 func (m FooMap[T]) Float32Gt(val float32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Float32 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Float32 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Gt filters the iterator items to [Foo] whose [Foo.Float32] is greater than the argument.
@@ -3740,13 +3740,13 @@ func (m FooMap[T]) Float32Gt(val float32) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Float32Gt(1)
 func (s FooSeq) Float32Gt(val float32) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Float32 > val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Float32 > val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Gt filters the iterator items to [Foo] whose [Foo.Float32] is greater than the argument.
@@ -3755,13 +3755,13 @@ func (s FooSeq) Float32Gt(val float32) FooSeq {
 //
 // 	for k, v := range fooSeq2.Float32Gt(1)
 func (s FooSeq2[T]) Float32Gt(val float32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Float32 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Float32 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Lt filters the iterator items to [Foo] whose [Foo.Float32] is less than the argument.
@@ -3770,13 +3770,13 @@ func (s FooSeq2[T]) Float32Gt(val float32) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Float32Lt(1)
 func (s FooSlice) Float32Lt(val float32) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Float32 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Float32 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Lt filters the iterator items to [Foo] whose [Foo.Float32] is less than the argument.
@@ -3785,13 +3785,13 @@ func (s FooSlice) Float32Lt(val float32) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Float32Lt(1)
 func (m FooMap[T]) Float32Lt(val float32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Float32 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Float32 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Lt filters the iterator items to [Foo] whose [Foo.Float32] is less than the argument.
@@ -3800,13 +3800,13 @@ func (m FooMap[T]) Float32Lt(val float32) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Float32Lt(1)
 func (s FooSeq) Float32Lt(val float32) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Float32 < val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Float32 < val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Lt filters the iterator items to [Foo] whose [Foo.Float32] is less than the argument.
@@ -3815,13 +3815,13 @@ func (s FooSeq) Float32Lt(val float32) FooSeq {
 //
 // 	for k, v := range fooSeq2.Float32Lt(1)
 func (s FooSeq2[T]) Float32Lt(val float32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Float32 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Float32 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Ge filters the iterator items to [Foo] whose [Foo.Float32] is greater than or equal to the argument.
@@ -3830,13 +3830,13 @@ func (s FooSeq2[T]) Float32Lt(val float32) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Float32Ge(1)
 func (s FooSlice) Float32Ge(val float32) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Float32 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Float32 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Ge filters the iterator items to [Foo] whose [Foo.Float32] is greater than or equal to the argument.
@@ -3845,13 +3845,13 @@ func (s FooSlice) Float32Ge(val float32) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Float32Ge(1)
 func (m FooMap[T]) Float32Ge(val float32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Float32 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Float32 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Ge filters the iterator items to [Foo] whose [Foo.Float32] is greater than or equal to the argument.
@@ -3860,13 +3860,13 @@ func (m FooMap[T]) Float32Ge(val float32) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Float32Ge(1)
 func (s FooSeq) Float32Ge(val float32) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Float32 >= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Float32 >= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Ge filters the iterator items to [Foo] whose [Foo.Float32] is greater than or equal to the argument.
@@ -3875,13 +3875,13 @@ func (s FooSeq) Float32Ge(val float32) FooSeq {
 //
 // 	for k, v := range fooSeq2.Float32Ge(1)
 func (s FooSeq2[T]) Float32Ge(val float32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Float32 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Float32 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Le filters the iterator items to [Foo] whose [Foo.Float32] is less than or equal to the argument.
@@ -3890,13 +3890,13 @@ func (s FooSeq2[T]) Float32Ge(val float32) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Float32Le(1)
 func (s FooSlice) Float32Le(val float32) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Float32 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Float32 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Le filters the iterator items to [Foo] whose [Foo.Float32] is less than or equal to the argument.
@@ -3905,13 +3905,13 @@ func (s FooSlice) Float32Le(val float32) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Float32Le(1)
 func (m FooMap[T]) Float32Le(val float32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Float32 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Float32 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Le filters the iterator items to [Foo] whose [Foo.Float32] is less than or equal to the argument.
@@ -3920,13 +3920,13 @@ func (m FooMap[T]) Float32Le(val float32) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Float32Le(1)
 func (s FooSeq) Float32Le(val float32) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Float32 <= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Float32 <= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Le filters the iterator items to [Foo] whose [Foo.Float32] is less than or equal to the argument.
@@ -3935,13 +3935,13 @@ func (s FooSeq) Float32Le(val float32) FooSeq {
 //
 // 	for k, v := range fooSeq2.Float32Le(1)
 func (s FooSeq2[T]) Float32Le(val float32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Float32 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Float32 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Matches filters the iterator items to [Foo] whose [Foo.Float32] matches the condition of the argument.
@@ -3950,13 +3950,13 @@ func (s FooSeq2[T]) Float32Le(val float32) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Float32(func(val float32) bool { return i % 2 == 0 })
 func (s FooSlice) Float32Matches(matcher func(float32) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Float32) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Float32) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Matches filters the iterator items to [Foo] whose [Foo.Float32] matches the condition of the argument.
@@ -3965,13 +3965,13 @@ func (s FooSlice) Float32Matches(matcher func(float32) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Float32(func(val float32) bool { return i % 2 == 0 })
 func (m FooMap[T]) Float32Matches(matcher func(float32) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Float32) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Float32) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Matches filters the iterator items to [Foo] whose [Foo.Float32] matches the condition of the argument.
@@ -3980,13 +3980,13 @@ func (m FooMap[T]) Float32Matches(matcher func(float32) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Float32(func(val float32) bool { return i % 2 == 0 })
 func (s FooSeq) Float32Matches(matcher func(float32) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Float32) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Float32) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Float32Matches filters the iterator items to [Foo] whose [Foo.Float32] matches the condition of the argument.
@@ -3995,13 +3995,13 @@ func (s FooSeq) Float32Matches(matcher func(float32) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Float32(func(val float32) bool { return i % 2 == 0 })
 func (s FooSeq2[T]) Float32Matches(matcher func(float32) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Float32) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Float32) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Eq filters the iterator items to [Foo] whose [Foo.Float64] is equal to the argument.
@@ -4010,13 +4010,13 @@ func (s FooSeq2[T]) Float32Matches(matcher func(float32) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Float64Eq(1)
 func (s FooSlice) Float64Eq(val float64) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Float64 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Float64 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Eq filters the iterator items to [Foo] whose [Foo.Float64] is equal to the argument.
@@ -4025,13 +4025,13 @@ func (s FooSlice) Float64Eq(val float64) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Float64Eq(1)
 func (m FooMap[T]) Float64Eq(val float64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Float64 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Float64 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Eq filters the iterator items to [Foo] whose [Foo.Float64] is equal to the argument.
@@ -4040,13 +4040,13 @@ func (m FooMap[T]) Float64Eq(val float64) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Float64Eq(1)
 func (s FooSeq) Float64Eq(val float64) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Float64 == val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Float64 == val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Eq filters the iterator items to [Foo] whose [Foo.Float64] is equal to the argument.
@@ -4055,13 +4055,13 @@ func (s FooSeq) Float64Eq(val float64) FooSeq {
 //
 // 	for k, v := range fooSeq2.Float64Eq(1)
 func (s FooSeq2[T]) Float64Eq(val float64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Float64 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Float64 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Ne filters the iterator items to [Foo] whose [Foo.Float64] is not equal to the argument.
@@ -4070,13 +4070,13 @@ func (s FooSeq2[T]) Float64Eq(val float64) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Float64Ne(1)
 func (s FooSlice) Float64Ne(val float64) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Float64 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Float64 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Ne filters the iterator items to [Foo] whose [Foo.Float64] is not equal to the argument.
@@ -4085,13 +4085,13 @@ func (s FooSlice) Float64Ne(val float64) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Float64Ne(1)
 func (m FooMap[T]) Float64Ne(val float64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Float64 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Float64 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Ne filters the iterator items to [Foo] whose [Foo.Float64] is not equal to the argument.
@@ -4100,13 +4100,13 @@ func (m FooMap[T]) Float64Ne(val float64) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Float64Ne(1)
 func (s FooSeq) Float64Ne(val float64) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Float64 != val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Float64 != val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Ne filters the iterator items to [Foo] whose [Foo.Float64] is not equal to the argument.
@@ -4115,13 +4115,13 @@ func (s FooSeq) Float64Ne(val float64) FooSeq {
 //
 // 	for k, v := range fooSeq2.Float64Ne(1)
 func (s FooSeq2[T]) Float64Ne(val float64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Float64 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Float64 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Gt filters the iterator items to [Foo] whose [Foo.Float64] is greater than the argument.
@@ -4130,13 +4130,13 @@ func (s FooSeq2[T]) Float64Ne(val float64) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Float64Gt(1)
 func (s FooSlice) Float64Gt(val float64) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Float64 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Float64 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Gt filters the iterator items to [Foo] whose [Foo.Float64] is greater than the argument.
@@ -4145,13 +4145,13 @@ func (s FooSlice) Float64Gt(val float64) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Float64Gt(1)
 func (m FooMap[T]) Float64Gt(val float64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Float64 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Float64 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Gt filters the iterator items to [Foo] whose [Foo.Float64] is greater than the argument.
@@ -4160,13 +4160,13 @@ func (m FooMap[T]) Float64Gt(val float64) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Float64Gt(1)
 func (s FooSeq) Float64Gt(val float64) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Float64 > val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Float64 > val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Gt filters the iterator items to [Foo] whose [Foo.Float64] is greater than the argument.
@@ -4175,13 +4175,13 @@ func (s FooSeq) Float64Gt(val float64) FooSeq {
 //
 // 	for k, v := range fooSeq2.Float64Gt(1)
 func (s FooSeq2[T]) Float64Gt(val float64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Float64 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Float64 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Lt filters the iterator items to [Foo] whose [Foo.Float64] is less than the argument.
@@ -4190,13 +4190,13 @@ func (s FooSeq2[T]) Float64Gt(val float64) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Float64Lt(1)
 func (s FooSlice) Float64Lt(val float64) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Float64 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Float64 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Lt filters the iterator items to [Foo] whose [Foo.Float64] is less than the argument.
@@ -4205,13 +4205,13 @@ func (s FooSlice) Float64Lt(val float64) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Float64Lt(1)
 func (m FooMap[T]) Float64Lt(val float64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Float64 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Float64 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Lt filters the iterator items to [Foo] whose [Foo.Float64] is less than the argument.
@@ -4220,13 +4220,13 @@ func (m FooMap[T]) Float64Lt(val float64) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Float64Lt(1)
 func (s FooSeq) Float64Lt(val float64) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Float64 < val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Float64 < val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Lt filters the iterator items to [Foo] whose [Foo.Float64] is less than the argument.
@@ -4235,13 +4235,13 @@ func (s FooSeq) Float64Lt(val float64) FooSeq {
 //
 // 	for k, v := range fooSeq2.Float64Lt(1)
 func (s FooSeq2[T]) Float64Lt(val float64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Float64 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Float64 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Ge filters the iterator items to [Foo] whose [Foo.Float64] is greater than or equal to the argument.
@@ -4250,13 +4250,13 @@ func (s FooSeq2[T]) Float64Lt(val float64) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Float64Ge(1)
 func (s FooSlice) Float64Ge(val float64) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Float64 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Float64 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Ge filters the iterator items to [Foo] whose [Foo.Float64] is greater than or equal to the argument.
@@ -4265,13 +4265,13 @@ func (s FooSlice) Float64Ge(val float64) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Float64Ge(1)
 func (m FooMap[T]) Float64Ge(val float64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Float64 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Float64 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Ge filters the iterator items to [Foo] whose [Foo.Float64] is greater than or equal to the argument.
@@ -4280,13 +4280,13 @@ func (m FooMap[T]) Float64Ge(val float64) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Float64Ge(1)
 func (s FooSeq) Float64Ge(val float64) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Float64 >= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Float64 >= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Ge filters the iterator items to [Foo] whose [Foo.Float64] is greater than or equal to the argument.
@@ -4295,13 +4295,13 @@ func (s FooSeq) Float64Ge(val float64) FooSeq {
 //
 // 	for k, v := range fooSeq2.Float64Ge(1)
 func (s FooSeq2[T]) Float64Ge(val float64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Float64 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Float64 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Le filters the iterator items to [Foo] whose [Foo.Float64] is less than or equal to the argument.
@@ -4310,13 +4310,13 @@ func (s FooSeq2[T]) Float64Ge(val float64) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Float64Le(1)
 func (s FooSlice) Float64Le(val float64) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Float64 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Float64 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Le filters the iterator items to [Foo] whose [Foo.Float64] is less than or equal to the argument.
@@ -4325,13 +4325,13 @@ func (s FooSlice) Float64Le(val float64) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Float64Le(1)
 func (m FooMap[T]) Float64Le(val float64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Float64 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Float64 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Le filters the iterator items to [Foo] whose [Foo.Float64] is less than or equal to the argument.
@@ -4340,13 +4340,13 @@ func (m FooMap[T]) Float64Le(val float64) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Float64Le(1)
 func (s FooSeq) Float64Le(val float64) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Float64 <= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Float64 <= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Le filters the iterator items to [Foo] whose [Foo.Float64] is less than or equal to the argument.
@@ -4355,13 +4355,13 @@ func (s FooSeq) Float64Le(val float64) FooSeq {
 //
 // 	for k, v := range fooSeq2.Float64Le(1)
 func (s FooSeq2[T]) Float64Le(val float64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Float64 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Float64 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Matches filters the iterator items to [Foo] whose [Foo.Float64] matches the condition of the argument.
@@ -4370,13 +4370,13 @@ func (s FooSeq2[T]) Float64Le(val float64) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Float64(func(val float64) bool { return i % 2 == 0 })
 func (s FooSlice) Float64Matches(matcher func(float64) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Float64) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Float64) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Matches filters the iterator items to [Foo] whose [Foo.Float64] matches the condition of the argument.
@@ -4385,13 +4385,13 @@ func (s FooSlice) Float64Matches(matcher func(float64) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Float64(func(val float64) bool { return i % 2 == 0 })
 func (m FooMap[T]) Float64Matches(matcher func(float64) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Float64) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Float64) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Matches filters the iterator items to [Foo] whose [Foo.Float64] matches the condition of the argument.
@@ -4400,13 +4400,13 @@ func (m FooMap[T]) Float64Matches(matcher func(float64) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Float64(func(val float64) bool { return i % 2 == 0 })
 func (s FooSeq) Float64Matches(matcher func(float64) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Float64) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Float64) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Float64Matches filters the iterator items to [Foo] whose [Foo.Float64] matches the condition of the argument.
@@ -4415,13 +4415,13 @@ func (s FooSeq) Float64Matches(matcher func(float64) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Float64(func(val float64) bool { return i % 2 == 0 })
 func (s FooSeq2[T]) Float64Matches(matcher func(float64) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Float64) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Float64) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneEq filters the iterator items to [Foo] whose [Foo.Rune] is equal to the argument.
@@ -4430,13 +4430,13 @@ func (s FooSeq2[T]) Float64Matches(matcher func(float64) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.RuneEq(1)
 func (s FooSlice) RuneEq(val rune) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Rune == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Rune == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneEq filters the iterator items to [Foo] whose [Foo.Rune] is equal to the argument.
@@ -4445,13 +4445,13 @@ func (s FooSlice) RuneEq(val rune) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.RuneEq(1)
 func (m FooMap[T]) RuneEq(val rune) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Rune == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Rune == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneEq filters the iterator items to [Foo] whose [Foo.Rune] is equal to the argument.
@@ -4460,13 +4460,13 @@ func (m FooMap[T]) RuneEq(val rune) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.RuneEq(1)
 func (s FooSeq) RuneEq(val rune) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Rune == val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Rune == val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneEq filters the iterator items to [Foo] whose [Foo.Rune] is equal to the argument.
@@ -4475,13 +4475,13 @@ func (s FooSeq) RuneEq(val rune) FooSeq {
 //
 // 	for k, v := range fooSeq2.RuneEq(1)
 func (s FooSeq2[T]) RuneEq(val rune) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Rune == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Rune == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneNe filters the iterator items to [Foo] whose [Foo.Rune] is not equal to the argument.
@@ -4490,13 +4490,13 @@ func (s FooSeq2[T]) RuneEq(val rune) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.RuneNe(1)
 func (s FooSlice) RuneNe(val rune) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Rune != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Rune != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneNe filters the iterator items to [Foo] whose [Foo.Rune] is not equal to the argument.
@@ -4505,13 +4505,13 @@ func (s FooSlice) RuneNe(val rune) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.RuneNe(1)
 func (m FooMap[T]) RuneNe(val rune) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Rune != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Rune != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneNe filters the iterator items to [Foo] whose [Foo.Rune] is not equal to the argument.
@@ -4520,13 +4520,13 @@ func (m FooMap[T]) RuneNe(val rune) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.RuneNe(1)
 func (s FooSeq) RuneNe(val rune) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Rune != val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Rune != val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneNe filters the iterator items to [Foo] whose [Foo.Rune] is not equal to the argument.
@@ -4535,13 +4535,13 @@ func (s FooSeq) RuneNe(val rune) FooSeq {
 //
 // 	for k, v := range fooSeq2.RuneNe(1)
 func (s FooSeq2[T]) RuneNe(val rune) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Rune != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Rune != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneGt filters the iterator items to [Foo] whose [Foo.Rune] is greater than the argument.
@@ -4550,13 +4550,13 @@ func (s FooSeq2[T]) RuneNe(val rune) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.RuneGt(1)
 func (s FooSlice) RuneGt(val rune) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Rune > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Rune > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneGt filters the iterator items to [Foo] whose [Foo.Rune] is greater than the argument.
@@ -4565,13 +4565,13 @@ func (s FooSlice) RuneGt(val rune) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.RuneGt(1)
 func (m FooMap[T]) RuneGt(val rune) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Rune > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Rune > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneGt filters the iterator items to [Foo] whose [Foo.Rune] is greater than the argument.
@@ -4580,13 +4580,13 @@ func (m FooMap[T]) RuneGt(val rune) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.RuneGt(1)
 func (s FooSeq) RuneGt(val rune) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Rune > val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Rune > val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneGt filters the iterator items to [Foo] whose [Foo.Rune] is greater than the argument.
@@ -4595,13 +4595,13 @@ func (s FooSeq) RuneGt(val rune) FooSeq {
 //
 // 	for k, v := range fooSeq2.RuneGt(1)
 func (s FooSeq2[T]) RuneGt(val rune) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Rune > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Rune > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneLt filters the iterator items to [Foo] whose [Foo.Rune] is less than the argument.
@@ -4610,13 +4610,13 @@ func (s FooSeq2[T]) RuneGt(val rune) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.RuneLt(1)
 func (s FooSlice) RuneLt(val rune) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Rune < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Rune < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneLt filters the iterator items to [Foo] whose [Foo.Rune] is less than the argument.
@@ -4625,13 +4625,13 @@ func (s FooSlice) RuneLt(val rune) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.RuneLt(1)
 func (m FooMap[T]) RuneLt(val rune) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Rune < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Rune < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneLt filters the iterator items to [Foo] whose [Foo.Rune] is less than the argument.
@@ -4640,13 +4640,13 @@ func (m FooMap[T]) RuneLt(val rune) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.RuneLt(1)
 func (s FooSeq) RuneLt(val rune) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Rune < val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Rune < val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneLt filters the iterator items to [Foo] whose [Foo.Rune] is less than the argument.
@@ -4655,13 +4655,13 @@ func (s FooSeq) RuneLt(val rune) FooSeq {
 //
 // 	for k, v := range fooSeq2.RuneLt(1)
 func (s FooSeq2[T]) RuneLt(val rune) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Rune < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Rune < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneGe filters the iterator items to [Foo] whose [Foo.Rune] is greater than or equal to the argument.
@@ -4670,13 +4670,13 @@ func (s FooSeq2[T]) RuneLt(val rune) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.RuneGe(1)
 func (s FooSlice) RuneGe(val rune) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Rune >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Rune >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneGe filters the iterator items to [Foo] whose [Foo.Rune] is greater than or equal to the argument.
@@ -4685,13 +4685,13 @@ func (s FooSlice) RuneGe(val rune) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.RuneGe(1)
 func (m FooMap[T]) RuneGe(val rune) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Rune >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Rune >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneGe filters the iterator items to [Foo] whose [Foo.Rune] is greater than or equal to the argument.
@@ -4700,13 +4700,13 @@ func (m FooMap[T]) RuneGe(val rune) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.RuneGe(1)
 func (s FooSeq) RuneGe(val rune) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Rune >= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Rune >= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneGe filters the iterator items to [Foo] whose [Foo.Rune] is greater than or equal to the argument.
@@ -4715,13 +4715,13 @@ func (s FooSeq) RuneGe(val rune) FooSeq {
 //
 // 	for k, v := range fooSeq2.RuneGe(1)
 func (s FooSeq2[T]) RuneGe(val rune) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Rune >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Rune >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneLe filters the iterator items to [Foo] whose [Foo.Rune] is less than or equal to the argument.
@@ -4730,13 +4730,13 @@ func (s FooSeq2[T]) RuneGe(val rune) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.RuneLe(1)
 func (s FooSlice) RuneLe(val rune) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Rune <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Rune <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneLe filters the iterator items to [Foo] whose [Foo.Rune] is less than or equal to the argument.
@@ -4745,13 +4745,13 @@ func (s FooSlice) RuneLe(val rune) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.RuneLe(1)
 func (m FooMap[T]) RuneLe(val rune) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Rune <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Rune <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneLe filters the iterator items to [Foo] whose [Foo.Rune] is less than or equal to the argument.
@@ -4760,13 +4760,13 @@ func (m FooMap[T]) RuneLe(val rune) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.RuneLe(1)
 func (s FooSeq) RuneLe(val rune) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Rune <= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Rune <= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneLe filters the iterator items to [Foo] whose [Foo.Rune] is less than or equal to the argument.
@@ -4775,13 +4775,13 @@ func (s FooSeq) RuneLe(val rune) FooSeq {
 //
 // 	for k, v := range fooSeq2.RuneLe(1)
 func (s FooSeq2[T]) RuneLe(val rune) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Rune <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Rune <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneMatches filters the iterator items to [Foo] whose [Foo.Rune] matches the condition of the argument.
@@ -4790,13 +4790,13 @@ func (s FooSeq2[T]) RuneLe(val rune) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Rune(func(val rune) bool { return i % 2 == 0 })
 func (s FooSlice) RuneMatches(matcher func(rune) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Rune) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Rune) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneMatches filters the iterator items to [Foo] whose [Foo.Rune] matches the condition of the argument.
@@ -4805,13 +4805,13 @@ func (s FooSlice) RuneMatches(matcher func(rune) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Rune(func(val rune) bool { return i % 2 == 0 })
 func (m FooMap[T]) RuneMatches(matcher func(rune) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Rune) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Rune) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneMatches filters the iterator items to [Foo] whose [Foo.Rune] matches the condition of the argument.
@@ -4820,13 +4820,13 @@ func (m FooMap[T]) RuneMatches(matcher func(rune) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Rune(func(val rune) bool { return i % 2 == 0 })
 func (s FooSeq) RuneMatches(matcher func(rune) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Rune) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Rune) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // RuneMatches filters the iterator items to [Foo] whose [Foo.Rune] matches the condition of the argument.
@@ -4835,13 +4835,13 @@ func (s FooSeq) RuneMatches(matcher func(rune) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Rune(func(val rune) bool { return i % 2 == 0 })
 func (s FooSeq2[T]) RuneMatches(matcher func(rune) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Rune) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Rune) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteEq filters the iterator items to [Foo] whose [Foo.Byte] is equal to the argument.
@@ -4850,13 +4850,13 @@ func (s FooSeq2[T]) RuneMatches(matcher func(rune) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.ByteEq(1)
 func (s FooSlice) ByteEq(val byte) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Byte == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Byte == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteEq filters the iterator items to [Foo] whose [Foo.Byte] is equal to the argument.
@@ -4865,13 +4865,13 @@ func (s FooSlice) ByteEq(val byte) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.ByteEq(1)
 func (m FooMap[T]) ByteEq(val byte) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Byte == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Byte == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteEq filters the iterator items to [Foo] whose [Foo.Byte] is equal to the argument.
@@ -4880,13 +4880,13 @@ func (m FooMap[T]) ByteEq(val byte) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.ByteEq(1)
 func (s FooSeq) ByteEq(val byte) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Byte == val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Byte == val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteEq filters the iterator items to [Foo] whose [Foo.Byte] is equal to the argument.
@@ -4895,13 +4895,13 @@ func (s FooSeq) ByteEq(val byte) FooSeq {
 //
 // 	for k, v := range fooSeq2.ByteEq(1)
 func (s FooSeq2[T]) ByteEq(val byte) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Byte == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Byte == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteNe filters the iterator items to [Foo] whose [Foo.Byte] is not equal to the argument.
@@ -4910,13 +4910,13 @@ func (s FooSeq2[T]) ByteEq(val byte) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.ByteNe(1)
 func (s FooSlice) ByteNe(val byte) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Byte != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Byte != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteNe filters the iterator items to [Foo] whose [Foo.Byte] is not equal to the argument.
@@ -4925,13 +4925,13 @@ func (s FooSlice) ByteNe(val byte) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.ByteNe(1)
 func (m FooMap[T]) ByteNe(val byte) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Byte != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Byte != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteNe filters the iterator items to [Foo] whose [Foo.Byte] is not equal to the argument.
@@ -4940,13 +4940,13 @@ func (m FooMap[T]) ByteNe(val byte) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.ByteNe(1)
 func (s FooSeq) ByteNe(val byte) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Byte != val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Byte != val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteNe filters the iterator items to [Foo] whose [Foo.Byte] is not equal to the argument.
@@ -4955,13 +4955,13 @@ func (s FooSeq) ByteNe(val byte) FooSeq {
 //
 // 	for k, v := range fooSeq2.ByteNe(1)
 func (s FooSeq2[T]) ByteNe(val byte) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Byte != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Byte != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteGt filters the iterator items to [Foo] whose [Foo.Byte] is greater than the argument.
@@ -4970,13 +4970,13 @@ func (s FooSeq2[T]) ByteNe(val byte) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.ByteGt(1)
 func (s FooSlice) ByteGt(val byte) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Byte > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Byte > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteGt filters the iterator items to [Foo] whose [Foo.Byte] is greater than the argument.
@@ -4985,13 +4985,13 @@ func (s FooSlice) ByteGt(val byte) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.ByteGt(1)
 func (m FooMap[T]) ByteGt(val byte) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Byte > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Byte > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteGt filters the iterator items to [Foo] whose [Foo.Byte] is greater than the argument.
@@ -5000,13 +5000,13 @@ func (m FooMap[T]) ByteGt(val byte) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.ByteGt(1)
 func (s FooSeq) ByteGt(val byte) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Byte > val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Byte > val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteGt filters the iterator items to [Foo] whose [Foo.Byte] is greater than the argument.
@@ -5015,13 +5015,13 @@ func (s FooSeq) ByteGt(val byte) FooSeq {
 //
 // 	for k, v := range fooSeq2.ByteGt(1)
 func (s FooSeq2[T]) ByteGt(val byte) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Byte > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Byte > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteLt filters the iterator items to [Foo] whose [Foo.Byte] is less than the argument.
@@ -5030,13 +5030,13 @@ func (s FooSeq2[T]) ByteGt(val byte) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.ByteLt(1)
 func (s FooSlice) ByteLt(val byte) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Byte < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Byte < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteLt filters the iterator items to [Foo] whose [Foo.Byte] is less than the argument.
@@ -5045,13 +5045,13 @@ func (s FooSlice) ByteLt(val byte) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.ByteLt(1)
 func (m FooMap[T]) ByteLt(val byte) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Byte < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Byte < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteLt filters the iterator items to [Foo] whose [Foo.Byte] is less than the argument.
@@ -5060,13 +5060,13 @@ func (m FooMap[T]) ByteLt(val byte) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.ByteLt(1)
 func (s FooSeq) ByteLt(val byte) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Byte < val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Byte < val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteLt filters the iterator items to [Foo] whose [Foo.Byte] is less than the argument.
@@ -5075,13 +5075,13 @@ func (s FooSeq) ByteLt(val byte) FooSeq {
 //
 // 	for k, v := range fooSeq2.ByteLt(1)
 func (s FooSeq2[T]) ByteLt(val byte) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Byte < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Byte < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteGe filters the iterator items to [Foo] whose [Foo.Byte] is greater than or equal to the argument.
@@ -5090,13 +5090,13 @@ func (s FooSeq2[T]) ByteLt(val byte) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.ByteGe(1)
 func (s FooSlice) ByteGe(val byte) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Byte >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Byte >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteGe filters the iterator items to [Foo] whose [Foo.Byte] is greater than or equal to the argument.
@@ -5105,13 +5105,13 @@ func (s FooSlice) ByteGe(val byte) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.ByteGe(1)
 func (m FooMap[T]) ByteGe(val byte) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Byte >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Byte >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteGe filters the iterator items to [Foo] whose [Foo.Byte] is greater than or equal to the argument.
@@ -5120,13 +5120,13 @@ func (m FooMap[T]) ByteGe(val byte) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.ByteGe(1)
 func (s FooSeq) ByteGe(val byte) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Byte >= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Byte >= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteGe filters the iterator items to [Foo] whose [Foo.Byte] is greater than or equal to the argument.
@@ -5135,13 +5135,13 @@ func (s FooSeq) ByteGe(val byte) FooSeq {
 //
 // 	for k, v := range fooSeq2.ByteGe(1)
 func (s FooSeq2[T]) ByteGe(val byte) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Byte >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Byte >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteLe filters the iterator items to [Foo] whose [Foo.Byte] is less than or equal to the argument.
@@ -5150,13 +5150,13 @@ func (s FooSeq2[T]) ByteGe(val byte) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.ByteLe(1)
 func (s FooSlice) ByteLe(val byte) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Byte <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Byte <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteLe filters the iterator items to [Foo] whose [Foo.Byte] is less than or equal to the argument.
@@ -5165,13 +5165,13 @@ func (s FooSlice) ByteLe(val byte) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.ByteLe(1)
 func (m FooMap[T]) ByteLe(val byte) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Byte <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Byte <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteLe filters the iterator items to [Foo] whose [Foo.Byte] is less than or equal to the argument.
@@ -5180,13 +5180,13 @@ func (m FooMap[T]) ByteLe(val byte) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.ByteLe(1)
 func (s FooSeq) ByteLe(val byte) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Byte <= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Byte <= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteLe filters the iterator items to [Foo] whose [Foo.Byte] is less than or equal to the argument.
@@ -5195,13 +5195,13 @@ func (s FooSeq) ByteLe(val byte) FooSeq {
 //
 // 	for k, v := range fooSeq2.ByteLe(1)
 func (s FooSeq2[T]) ByteLe(val byte) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Byte <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Byte <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteMatches filters the iterator items to [Foo] whose [Foo.Byte] matches the condition of the argument.
@@ -5210,13 +5210,13 @@ func (s FooSeq2[T]) ByteLe(val byte) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Byte(func(val byte) bool { return i % 2 == 0 })
 func (s FooSlice) ByteMatches(matcher func(byte) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Byte) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Byte) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteMatches filters the iterator items to [Foo] whose [Foo.Byte] matches the condition of the argument.
@@ -5225,13 +5225,13 @@ func (s FooSlice) ByteMatches(matcher func(byte) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Byte(func(val byte) bool { return i % 2 == 0 })
 func (m FooMap[T]) ByteMatches(matcher func(byte) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Byte) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Byte) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteMatches filters the iterator items to [Foo] whose [Foo.Byte] matches the condition of the argument.
@@ -5240,13 +5240,13 @@ func (m FooMap[T]) ByteMatches(matcher func(byte) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Byte(func(val byte) bool { return i % 2 == 0 })
 func (s FooSeq) ByteMatches(matcher func(byte) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Byte) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Byte) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // ByteMatches filters the iterator items to [Foo] whose [Foo.Byte] matches the condition of the argument.
@@ -5255,13 +5255,13 @@ func (s FooSeq) ByteMatches(matcher func(byte) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Byte(func(val byte) bool { return i % 2 == 0 })
 func (s FooSeq2[T]) ByteMatches(matcher func(byte) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Byte) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Byte) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Eq filters the iterator items to [Foo] whose [Foo.Int8] is equal to the argument.
@@ -5270,13 +5270,13 @@ func (s FooSeq2[T]) ByteMatches(matcher func(byte) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int8Eq(1)
 func (s FooSlice) Int8Eq(val int8) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int8 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int8 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Eq filters the iterator items to [Foo] whose [Foo.Int8] is equal to the argument.
@@ -5285,13 +5285,13 @@ func (s FooSlice) Int8Eq(val int8) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int8Eq(1)
 func (m FooMap[T]) Int8Eq(val int8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int8 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int8 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Eq filters the iterator items to [Foo] whose [Foo.Int8] is equal to the argument.
@@ -5300,13 +5300,13 @@ func (m FooMap[T]) Int8Eq(val int8) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int8Eq(1)
 func (s FooSeq) Int8Eq(val int8) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int8 == val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int8 == val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Eq filters the iterator items to [Foo] whose [Foo.Int8] is equal to the argument.
@@ -5315,13 +5315,13 @@ func (s FooSeq) Int8Eq(val int8) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int8Eq(1)
 func (s FooSeq2[T]) Int8Eq(val int8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int8 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int8 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Ne filters the iterator items to [Foo] whose [Foo.Int8] is not equal to the argument.
@@ -5330,13 +5330,13 @@ func (s FooSeq2[T]) Int8Eq(val int8) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int8Ne(1)
 func (s FooSlice) Int8Ne(val int8) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int8 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int8 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Ne filters the iterator items to [Foo] whose [Foo.Int8] is not equal to the argument.
@@ -5345,13 +5345,13 @@ func (s FooSlice) Int8Ne(val int8) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int8Ne(1)
 func (m FooMap[T]) Int8Ne(val int8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int8 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int8 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Ne filters the iterator items to [Foo] whose [Foo.Int8] is not equal to the argument.
@@ -5360,13 +5360,13 @@ func (m FooMap[T]) Int8Ne(val int8) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int8Ne(1)
 func (s FooSeq) Int8Ne(val int8) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int8 != val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int8 != val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Ne filters the iterator items to [Foo] whose [Foo.Int8] is not equal to the argument.
@@ -5375,13 +5375,13 @@ func (s FooSeq) Int8Ne(val int8) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int8Ne(1)
 func (s FooSeq2[T]) Int8Ne(val int8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int8 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int8 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Gt filters the iterator items to [Foo] whose [Foo.Int8] is greater than the argument.
@@ -5390,13 +5390,13 @@ func (s FooSeq2[T]) Int8Ne(val int8) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int8Gt(1)
 func (s FooSlice) Int8Gt(val int8) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int8 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int8 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Gt filters the iterator items to [Foo] whose [Foo.Int8] is greater than the argument.
@@ -5405,13 +5405,13 @@ func (s FooSlice) Int8Gt(val int8) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int8Gt(1)
 func (m FooMap[T]) Int8Gt(val int8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int8 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int8 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Gt filters the iterator items to [Foo] whose [Foo.Int8] is greater than the argument.
@@ -5420,13 +5420,13 @@ func (m FooMap[T]) Int8Gt(val int8) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int8Gt(1)
 func (s FooSeq) Int8Gt(val int8) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int8 > val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int8 > val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Gt filters the iterator items to [Foo] whose [Foo.Int8] is greater than the argument.
@@ -5435,13 +5435,13 @@ func (s FooSeq) Int8Gt(val int8) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int8Gt(1)
 func (s FooSeq2[T]) Int8Gt(val int8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int8 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int8 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Lt filters the iterator items to [Foo] whose [Foo.Int8] is less than the argument.
@@ -5450,13 +5450,13 @@ func (s FooSeq2[T]) Int8Gt(val int8) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int8Lt(1)
 func (s FooSlice) Int8Lt(val int8) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int8 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int8 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Lt filters the iterator items to [Foo] whose [Foo.Int8] is less than the argument.
@@ -5465,13 +5465,13 @@ func (s FooSlice) Int8Lt(val int8) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int8Lt(1)
 func (m FooMap[T]) Int8Lt(val int8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int8 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int8 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Lt filters the iterator items to [Foo] whose [Foo.Int8] is less than the argument.
@@ -5480,13 +5480,13 @@ func (m FooMap[T]) Int8Lt(val int8) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int8Lt(1)
 func (s FooSeq) Int8Lt(val int8) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int8 < val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int8 < val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Lt filters the iterator items to [Foo] whose [Foo.Int8] is less than the argument.
@@ -5495,13 +5495,13 @@ func (s FooSeq) Int8Lt(val int8) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int8Lt(1)
 func (s FooSeq2[T]) Int8Lt(val int8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int8 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int8 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Ge filters the iterator items to [Foo] whose [Foo.Int8] is greater than or equal to the argument.
@@ -5510,13 +5510,13 @@ func (s FooSeq2[T]) Int8Lt(val int8) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int8Ge(1)
 func (s FooSlice) Int8Ge(val int8) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int8 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int8 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Ge filters the iterator items to [Foo] whose [Foo.Int8] is greater than or equal to the argument.
@@ -5525,13 +5525,13 @@ func (s FooSlice) Int8Ge(val int8) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int8Ge(1)
 func (m FooMap[T]) Int8Ge(val int8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int8 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int8 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Ge filters the iterator items to [Foo] whose [Foo.Int8] is greater than or equal to the argument.
@@ -5540,13 +5540,13 @@ func (m FooMap[T]) Int8Ge(val int8) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int8Ge(1)
 func (s FooSeq) Int8Ge(val int8) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int8 >= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int8 >= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Ge filters the iterator items to [Foo] whose [Foo.Int8] is greater than or equal to the argument.
@@ -5555,13 +5555,13 @@ func (s FooSeq) Int8Ge(val int8) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int8Ge(1)
 func (s FooSeq2[T]) Int8Ge(val int8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int8 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int8 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Le filters the iterator items to [Foo] whose [Foo.Int8] is less than or equal to the argument.
@@ -5570,13 +5570,13 @@ func (s FooSeq2[T]) Int8Ge(val int8) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int8Le(1)
 func (s FooSlice) Int8Le(val int8) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int8 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int8 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Le filters the iterator items to [Foo] whose [Foo.Int8] is less than or equal to the argument.
@@ -5585,13 +5585,13 @@ func (s FooSlice) Int8Le(val int8) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int8Le(1)
 func (m FooMap[T]) Int8Le(val int8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int8 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int8 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Le filters the iterator items to [Foo] whose [Foo.Int8] is less than or equal to the argument.
@@ -5600,13 +5600,13 @@ func (m FooMap[T]) Int8Le(val int8) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int8Le(1)
 func (s FooSeq) Int8Le(val int8) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int8 <= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int8 <= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Le filters the iterator items to [Foo] whose [Foo.Int8] is less than or equal to the argument.
@@ -5615,13 +5615,13 @@ func (s FooSeq) Int8Le(val int8) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int8Le(1)
 func (s FooSeq2[T]) Int8Le(val int8) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int8 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int8 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Matches filters the iterator items to [Foo] whose [Foo.Int8] matches the condition of the argument.
@@ -5630,13 +5630,13 @@ func (s FooSeq2[T]) Int8Le(val int8) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int8(func(val int8) bool { return i % 2 == 0 })
 func (s FooSlice) Int8Matches(matcher func(int8) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Int8) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Int8) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Matches filters the iterator items to [Foo] whose [Foo.Int8] matches the condition of the argument.
@@ -5645,13 +5645,13 @@ func (s FooSlice) Int8Matches(matcher func(int8) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int8(func(val int8) bool { return i % 2 == 0 })
 func (m FooMap[T]) Int8Matches(matcher func(int8) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Int8) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Int8) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Matches filters the iterator items to [Foo] whose [Foo.Int8] matches the condition of the argument.
@@ -5660,13 +5660,13 @@ func (m FooMap[T]) Int8Matches(matcher func(int8) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int8(func(val int8) bool { return i % 2 == 0 })
 func (s FooSeq) Int8Matches(matcher func(int8) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Int8) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Int8) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int8Matches filters the iterator items to [Foo] whose [Foo.Int8] matches the condition of the argument.
@@ -5675,13 +5675,13 @@ func (s FooSeq) Int8Matches(matcher func(int8) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int8(func(val int8) bool { return i % 2 == 0 })
 func (s FooSeq2[T]) Int8Matches(matcher func(int8) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Int8) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Int8) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Eq filters the iterator items to [Foo] whose [Foo.Int16] is equal to the argument.
@@ -5690,13 +5690,13 @@ func (s FooSeq2[T]) Int8Matches(matcher func(int8) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int16Eq(1)
 func (s FooSlice) Int16Eq(val int16) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int16 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int16 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Eq filters the iterator items to [Foo] whose [Foo.Int16] is equal to the argument.
@@ -5705,13 +5705,13 @@ func (s FooSlice) Int16Eq(val int16) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int16Eq(1)
 func (m FooMap[T]) Int16Eq(val int16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int16 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int16 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Eq filters the iterator items to [Foo] whose [Foo.Int16] is equal to the argument.
@@ -5720,13 +5720,13 @@ func (m FooMap[T]) Int16Eq(val int16) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int16Eq(1)
 func (s FooSeq) Int16Eq(val int16) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int16 == val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int16 == val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Eq filters the iterator items to [Foo] whose [Foo.Int16] is equal to the argument.
@@ -5735,13 +5735,13 @@ func (s FooSeq) Int16Eq(val int16) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int16Eq(1)
 func (s FooSeq2[T]) Int16Eq(val int16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int16 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int16 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Ne filters the iterator items to [Foo] whose [Foo.Int16] is not equal to the argument.
@@ -5750,13 +5750,13 @@ func (s FooSeq2[T]) Int16Eq(val int16) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int16Ne(1)
 func (s FooSlice) Int16Ne(val int16) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int16 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int16 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Ne filters the iterator items to [Foo] whose [Foo.Int16] is not equal to the argument.
@@ -5765,13 +5765,13 @@ func (s FooSlice) Int16Ne(val int16) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int16Ne(1)
 func (m FooMap[T]) Int16Ne(val int16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int16 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int16 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Ne filters the iterator items to [Foo] whose [Foo.Int16] is not equal to the argument.
@@ -5780,13 +5780,13 @@ func (m FooMap[T]) Int16Ne(val int16) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int16Ne(1)
 func (s FooSeq) Int16Ne(val int16) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int16 != val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int16 != val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Ne filters the iterator items to [Foo] whose [Foo.Int16] is not equal to the argument.
@@ -5795,13 +5795,13 @@ func (s FooSeq) Int16Ne(val int16) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int16Ne(1)
 func (s FooSeq2[T]) Int16Ne(val int16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int16 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int16 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Gt filters the iterator items to [Foo] whose [Foo.Int16] is greater than the argument.
@@ -5810,13 +5810,13 @@ func (s FooSeq2[T]) Int16Ne(val int16) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int16Gt(1)
 func (s FooSlice) Int16Gt(val int16) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int16 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int16 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Gt filters the iterator items to [Foo] whose [Foo.Int16] is greater than the argument.
@@ -5825,13 +5825,13 @@ func (s FooSlice) Int16Gt(val int16) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int16Gt(1)
 func (m FooMap[T]) Int16Gt(val int16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int16 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int16 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Gt filters the iterator items to [Foo] whose [Foo.Int16] is greater than the argument.
@@ -5840,13 +5840,13 @@ func (m FooMap[T]) Int16Gt(val int16) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int16Gt(1)
 func (s FooSeq) Int16Gt(val int16) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int16 > val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int16 > val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Gt filters the iterator items to [Foo] whose [Foo.Int16] is greater than the argument.
@@ -5855,13 +5855,13 @@ func (s FooSeq) Int16Gt(val int16) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int16Gt(1)
 func (s FooSeq2[T]) Int16Gt(val int16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int16 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int16 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Lt filters the iterator items to [Foo] whose [Foo.Int16] is less than the argument.
@@ -5870,13 +5870,13 @@ func (s FooSeq2[T]) Int16Gt(val int16) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int16Lt(1)
 func (s FooSlice) Int16Lt(val int16) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int16 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int16 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Lt filters the iterator items to [Foo] whose [Foo.Int16] is less than the argument.
@@ -5885,13 +5885,13 @@ func (s FooSlice) Int16Lt(val int16) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int16Lt(1)
 func (m FooMap[T]) Int16Lt(val int16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int16 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int16 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Lt filters the iterator items to [Foo] whose [Foo.Int16] is less than the argument.
@@ -5900,13 +5900,13 @@ func (m FooMap[T]) Int16Lt(val int16) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int16Lt(1)
 func (s FooSeq) Int16Lt(val int16) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int16 < val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int16 < val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Lt filters the iterator items to [Foo] whose [Foo.Int16] is less than the argument.
@@ -5915,13 +5915,13 @@ func (s FooSeq) Int16Lt(val int16) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int16Lt(1)
 func (s FooSeq2[T]) Int16Lt(val int16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int16 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int16 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Ge filters the iterator items to [Foo] whose [Foo.Int16] is greater than or equal to the argument.
@@ -5930,13 +5930,13 @@ func (s FooSeq2[T]) Int16Lt(val int16) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int16Ge(1)
 func (s FooSlice) Int16Ge(val int16) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int16 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int16 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Ge filters the iterator items to [Foo] whose [Foo.Int16] is greater than or equal to the argument.
@@ -5945,13 +5945,13 @@ func (s FooSlice) Int16Ge(val int16) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int16Ge(1)
 func (m FooMap[T]) Int16Ge(val int16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int16 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int16 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Ge filters the iterator items to [Foo] whose [Foo.Int16] is greater than or equal to the argument.
@@ -5960,13 +5960,13 @@ func (m FooMap[T]) Int16Ge(val int16) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int16Ge(1)
 func (s FooSeq) Int16Ge(val int16) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int16 >= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int16 >= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Ge filters the iterator items to [Foo] whose [Foo.Int16] is greater than or equal to the argument.
@@ -5975,13 +5975,13 @@ func (s FooSeq) Int16Ge(val int16) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int16Ge(1)
 func (s FooSeq2[T]) Int16Ge(val int16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int16 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int16 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Le filters the iterator items to [Foo] whose [Foo.Int16] is less than or equal to the argument.
@@ -5990,13 +5990,13 @@ func (s FooSeq2[T]) Int16Ge(val int16) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int16Le(1)
 func (s FooSlice) Int16Le(val int16) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int16 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int16 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Le filters the iterator items to [Foo] whose [Foo.Int16] is less than or equal to the argument.
@@ -6005,13 +6005,13 @@ func (s FooSlice) Int16Le(val int16) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int16Le(1)
 func (m FooMap[T]) Int16Le(val int16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int16 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int16 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Le filters the iterator items to [Foo] whose [Foo.Int16] is less than or equal to the argument.
@@ -6020,13 +6020,13 @@ func (m FooMap[T]) Int16Le(val int16) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int16Le(1)
 func (s FooSeq) Int16Le(val int16) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int16 <= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int16 <= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Le filters the iterator items to [Foo] whose [Foo.Int16] is less than or equal to the argument.
@@ -6035,13 +6035,13 @@ func (s FooSeq) Int16Le(val int16) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int16Le(1)
 func (s FooSeq2[T]) Int16Le(val int16) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int16 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int16 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Matches filters the iterator items to [Foo] whose [Foo.Int16] matches the condition of the argument.
@@ -6050,13 +6050,13 @@ func (s FooSeq2[T]) Int16Le(val int16) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int16(func(val int16) bool { return i % 2 == 0 })
 func (s FooSlice) Int16Matches(matcher func(int16) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Int16) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Int16) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Matches filters the iterator items to [Foo] whose [Foo.Int16] matches the condition of the argument.
@@ -6065,13 +6065,13 @@ func (s FooSlice) Int16Matches(matcher func(int16) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int16(func(val int16) bool { return i % 2 == 0 })
 func (m FooMap[T]) Int16Matches(matcher func(int16) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Int16) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Int16) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Matches filters the iterator items to [Foo] whose [Foo.Int16] matches the condition of the argument.
@@ -6080,13 +6080,13 @@ func (m FooMap[T]) Int16Matches(matcher func(int16) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int16(func(val int16) bool { return i % 2 == 0 })
 func (s FooSeq) Int16Matches(matcher func(int16) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Int16) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Int16) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int16Matches filters the iterator items to [Foo] whose [Foo.Int16] matches the condition of the argument.
@@ -6095,13 +6095,13 @@ func (s FooSeq) Int16Matches(matcher func(int16) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int16(func(val int16) bool { return i % 2 == 0 })
 func (s FooSeq2[T]) Int16Matches(matcher func(int16) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Int16) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Int16) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Eq filters the iterator items to [Foo] whose [Foo.Int32] is equal to the argument.
@@ -6110,13 +6110,13 @@ func (s FooSeq2[T]) Int16Matches(matcher func(int16) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int32Eq(1)
 func (s FooSlice) Int32Eq(val int32) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int32 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int32 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Eq filters the iterator items to [Foo] whose [Foo.Int32] is equal to the argument.
@@ -6125,13 +6125,13 @@ func (s FooSlice) Int32Eq(val int32) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int32Eq(1)
 func (m FooMap[T]) Int32Eq(val int32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int32 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int32 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Eq filters the iterator items to [Foo] whose [Foo.Int32] is equal to the argument.
@@ -6140,13 +6140,13 @@ func (m FooMap[T]) Int32Eq(val int32) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int32Eq(1)
 func (s FooSeq) Int32Eq(val int32) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int32 == val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int32 == val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Eq filters the iterator items to [Foo] whose [Foo.Int32] is equal to the argument.
@@ -6155,13 +6155,13 @@ func (s FooSeq) Int32Eq(val int32) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int32Eq(1)
 func (s FooSeq2[T]) Int32Eq(val int32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int32 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int32 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Ne filters the iterator items to [Foo] whose [Foo.Int32] is not equal to the argument.
@@ -6170,13 +6170,13 @@ func (s FooSeq2[T]) Int32Eq(val int32) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int32Ne(1)
 func (s FooSlice) Int32Ne(val int32) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int32 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int32 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Ne filters the iterator items to [Foo] whose [Foo.Int32] is not equal to the argument.
@@ -6185,13 +6185,13 @@ func (s FooSlice) Int32Ne(val int32) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int32Ne(1)
 func (m FooMap[T]) Int32Ne(val int32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int32 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int32 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Ne filters the iterator items to [Foo] whose [Foo.Int32] is not equal to the argument.
@@ -6200,13 +6200,13 @@ func (m FooMap[T]) Int32Ne(val int32) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int32Ne(1)
 func (s FooSeq) Int32Ne(val int32) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int32 != val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int32 != val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Ne filters the iterator items to [Foo] whose [Foo.Int32] is not equal to the argument.
@@ -6215,13 +6215,13 @@ func (s FooSeq) Int32Ne(val int32) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int32Ne(1)
 func (s FooSeq2[T]) Int32Ne(val int32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int32 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int32 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Gt filters the iterator items to [Foo] whose [Foo.Int32] is greater than the argument.
@@ -6230,13 +6230,13 @@ func (s FooSeq2[T]) Int32Ne(val int32) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int32Gt(1)
 func (s FooSlice) Int32Gt(val int32) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int32 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int32 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Gt filters the iterator items to [Foo] whose [Foo.Int32] is greater than the argument.
@@ -6245,13 +6245,13 @@ func (s FooSlice) Int32Gt(val int32) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int32Gt(1)
 func (m FooMap[T]) Int32Gt(val int32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int32 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int32 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Gt filters the iterator items to [Foo] whose [Foo.Int32] is greater than the argument.
@@ -6260,13 +6260,13 @@ func (m FooMap[T]) Int32Gt(val int32) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int32Gt(1)
 func (s FooSeq) Int32Gt(val int32) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int32 > val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int32 > val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Gt filters the iterator items to [Foo] whose [Foo.Int32] is greater than the argument.
@@ -6275,13 +6275,13 @@ func (s FooSeq) Int32Gt(val int32) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int32Gt(1)
 func (s FooSeq2[T]) Int32Gt(val int32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int32 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int32 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Lt filters the iterator items to [Foo] whose [Foo.Int32] is less than the argument.
@@ -6290,13 +6290,13 @@ func (s FooSeq2[T]) Int32Gt(val int32) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int32Lt(1)
 func (s FooSlice) Int32Lt(val int32) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int32 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int32 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Lt filters the iterator items to [Foo] whose [Foo.Int32] is less than the argument.
@@ -6305,13 +6305,13 @@ func (s FooSlice) Int32Lt(val int32) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int32Lt(1)
 func (m FooMap[T]) Int32Lt(val int32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int32 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int32 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Lt filters the iterator items to [Foo] whose [Foo.Int32] is less than the argument.
@@ -6320,13 +6320,13 @@ func (m FooMap[T]) Int32Lt(val int32) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int32Lt(1)
 func (s FooSeq) Int32Lt(val int32) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int32 < val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int32 < val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Lt filters the iterator items to [Foo] whose [Foo.Int32] is less than the argument.
@@ -6335,13 +6335,13 @@ func (s FooSeq) Int32Lt(val int32) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int32Lt(1)
 func (s FooSeq2[T]) Int32Lt(val int32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int32 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int32 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Ge filters the iterator items to [Foo] whose [Foo.Int32] is greater than or equal to the argument.
@@ -6350,13 +6350,13 @@ func (s FooSeq2[T]) Int32Lt(val int32) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int32Ge(1)
 func (s FooSlice) Int32Ge(val int32) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int32 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int32 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Ge filters the iterator items to [Foo] whose [Foo.Int32] is greater than or equal to the argument.
@@ -6365,13 +6365,13 @@ func (s FooSlice) Int32Ge(val int32) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int32Ge(1)
 func (m FooMap[T]) Int32Ge(val int32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int32 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int32 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Ge filters the iterator items to [Foo] whose [Foo.Int32] is greater than or equal to the argument.
@@ -6380,13 +6380,13 @@ func (m FooMap[T]) Int32Ge(val int32) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int32Ge(1)
 func (s FooSeq) Int32Ge(val int32) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int32 >= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int32 >= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Ge filters the iterator items to [Foo] whose [Foo.Int32] is greater than or equal to the argument.
@@ -6395,13 +6395,13 @@ func (s FooSeq) Int32Ge(val int32) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int32Ge(1)
 func (s FooSeq2[T]) Int32Ge(val int32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int32 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int32 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Le filters the iterator items to [Foo] whose [Foo.Int32] is less than or equal to the argument.
@@ -6410,13 +6410,13 @@ func (s FooSeq2[T]) Int32Ge(val int32) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int32Le(1)
 func (s FooSlice) Int32Le(val int32) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int32 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int32 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Le filters the iterator items to [Foo] whose [Foo.Int32] is less than or equal to the argument.
@@ -6425,13 +6425,13 @@ func (s FooSlice) Int32Le(val int32) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int32Le(1)
 func (m FooMap[T]) Int32Le(val int32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int32 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int32 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Le filters the iterator items to [Foo] whose [Foo.Int32] is less than or equal to the argument.
@@ -6440,13 +6440,13 @@ func (m FooMap[T]) Int32Le(val int32) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int32Le(1)
 func (s FooSeq) Int32Le(val int32) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int32 <= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int32 <= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Le filters the iterator items to [Foo] whose [Foo.Int32] is less than or equal to the argument.
@@ -6455,13 +6455,13 @@ func (s FooSeq) Int32Le(val int32) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int32Le(1)
 func (s FooSeq2[T]) Int32Le(val int32) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int32 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int32 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Matches filters the iterator items to [Foo] whose [Foo.Int32] matches the condition of the argument.
@@ -6470,13 +6470,13 @@ func (s FooSeq2[T]) Int32Le(val int32) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int32(func(val int32) bool { return i % 2 == 0 })
 func (s FooSlice) Int32Matches(matcher func(int32) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Int32) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Int32) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Matches filters the iterator items to [Foo] whose [Foo.Int32] matches the condition of the argument.
@@ -6485,13 +6485,13 @@ func (s FooSlice) Int32Matches(matcher func(int32) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int32(func(val int32) bool { return i % 2 == 0 })
 func (m FooMap[T]) Int32Matches(matcher func(int32) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Int32) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Int32) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Matches filters the iterator items to [Foo] whose [Foo.Int32] matches the condition of the argument.
@@ -6500,13 +6500,13 @@ func (m FooMap[T]) Int32Matches(matcher func(int32) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int32(func(val int32) bool { return i % 2 == 0 })
 func (s FooSeq) Int32Matches(matcher func(int32) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Int32) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Int32) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int32Matches filters the iterator items to [Foo] whose [Foo.Int32] matches the condition of the argument.
@@ -6515,13 +6515,13 @@ func (s FooSeq) Int32Matches(matcher func(int32) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int32(func(val int32) bool { return i % 2 == 0 })
 func (s FooSeq2[T]) Int32Matches(matcher func(int32) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Int32) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Int32) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Eq filters the iterator items to [Foo] whose [Foo.Int64] is equal to the argument.
@@ -6530,13 +6530,13 @@ func (s FooSeq2[T]) Int32Matches(matcher func(int32) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int64Eq(1)
 func (s FooSlice) Int64Eq(val int64) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int64 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int64 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Eq filters the iterator items to [Foo] whose [Foo.Int64] is equal to the argument.
@@ -6545,13 +6545,13 @@ func (s FooSlice) Int64Eq(val int64) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int64Eq(1)
 func (m FooMap[T]) Int64Eq(val int64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int64 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int64 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Eq filters the iterator items to [Foo] whose [Foo.Int64] is equal to the argument.
@@ -6560,13 +6560,13 @@ func (m FooMap[T]) Int64Eq(val int64) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int64Eq(1)
 func (s FooSeq) Int64Eq(val int64) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int64 == val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int64 == val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Eq filters the iterator items to [Foo] whose [Foo.Int64] is equal to the argument.
@@ -6575,13 +6575,13 @@ func (s FooSeq) Int64Eq(val int64) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int64Eq(1)
 func (s FooSeq2[T]) Int64Eq(val int64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int64 == val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int64 == val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Ne filters the iterator items to [Foo] whose [Foo.Int64] is not equal to the argument.
@@ -6590,13 +6590,13 @@ func (s FooSeq2[T]) Int64Eq(val int64) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int64Ne(1)
 func (s FooSlice) Int64Ne(val int64) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int64 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int64 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Ne filters the iterator items to [Foo] whose [Foo.Int64] is not equal to the argument.
@@ -6605,13 +6605,13 @@ func (s FooSlice) Int64Ne(val int64) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int64Ne(1)
 func (m FooMap[T]) Int64Ne(val int64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int64 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int64 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Ne filters the iterator items to [Foo] whose [Foo.Int64] is not equal to the argument.
@@ -6620,13 +6620,13 @@ func (m FooMap[T]) Int64Ne(val int64) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int64Ne(1)
 func (s FooSeq) Int64Ne(val int64) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int64 != val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int64 != val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Ne filters the iterator items to [Foo] whose [Foo.Int64] is not equal to the argument.
@@ -6635,13 +6635,13 @@ func (s FooSeq) Int64Ne(val int64) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int64Ne(1)
 func (s FooSeq2[T]) Int64Ne(val int64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int64 != val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int64 != val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Gt filters the iterator items to [Foo] whose [Foo.Int64] is greater than the argument.
@@ -6650,13 +6650,13 @@ func (s FooSeq2[T]) Int64Ne(val int64) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int64Gt(1)
 func (s FooSlice) Int64Gt(val int64) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int64 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int64 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Gt filters the iterator items to [Foo] whose [Foo.Int64] is greater than the argument.
@@ -6665,13 +6665,13 @@ func (s FooSlice) Int64Gt(val int64) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int64Gt(1)
 func (m FooMap[T]) Int64Gt(val int64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int64 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int64 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Gt filters the iterator items to [Foo] whose [Foo.Int64] is greater than the argument.
@@ -6680,13 +6680,13 @@ func (m FooMap[T]) Int64Gt(val int64) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int64Gt(1)
 func (s FooSeq) Int64Gt(val int64) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int64 > val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int64 > val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Gt filters the iterator items to [Foo] whose [Foo.Int64] is greater than the argument.
@@ -6695,13 +6695,13 @@ func (s FooSeq) Int64Gt(val int64) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int64Gt(1)
 func (s FooSeq2[T]) Int64Gt(val int64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int64 > val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int64 > val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Lt filters the iterator items to [Foo] whose [Foo.Int64] is less than the argument.
@@ -6710,13 +6710,13 @@ func (s FooSeq2[T]) Int64Gt(val int64) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int64Lt(1)
 func (s FooSlice) Int64Lt(val int64) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int64 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int64 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Lt filters the iterator items to [Foo] whose [Foo.Int64] is less than the argument.
@@ -6725,13 +6725,13 @@ func (s FooSlice) Int64Lt(val int64) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int64Lt(1)
 func (m FooMap[T]) Int64Lt(val int64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int64 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int64 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Lt filters the iterator items to [Foo] whose [Foo.Int64] is less than the argument.
@@ -6740,13 +6740,13 @@ func (m FooMap[T]) Int64Lt(val int64) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int64Lt(1)
 func (s FooSeq) Int64Lt(val int64) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int64 < val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int64 < val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Lt filters the iterator items to [Foo] whose [Foo.Int64] is less than the argument.
@@ -6755,13 +6755,13 @@ func (s FooSeq) Int64Lt(val int64) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int64Lt(1)
 func (s FooSeq2[T]) Int64Lt(val int64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int64 < val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int64 < val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Ge filters the iterator items to [Foo] whose [Foo.Int64] is greater than or equal to the argument.
@@ -6770,13 +6770,13 @@ func (s FooSeq2[T]) Int64Lt(val int64) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int64Ge(1)
 func (s FooSlice) Int64Ge(val int64) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int64 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int64 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Ge filters the iterator items to [Foo] whose [Foo.Int64] is greater than or equal to the argument.
@@ -6785,13 +6785,13 @@ func (s FooSlice) Int64Ge(val int64) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int64Ge(1)
 func (m FooMap[T]) Int64Ge(val int64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int64 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int64 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Ge filters the iterator items to [Foo] whose [Foo.Int64] is greater than or equal to the argument.
@@ -6800,13 +6800,13 @@ func (m FooMap[T]) Int64Ge(val int64) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int64Ge(1)
 func (s FooSeq) Int64Ge(val int64) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int64 >= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int64 >= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Ge filters the iterator items to [Foo] whose [Foo.Int64] is greater than or equal to the argument.
@@ -6815,13 +6815,13 @@ func (s FooSeq) Int64Ge(val int64) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int64Ge(1)
 func (s FooSeq2[T]) Int64Ge(val int64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int64 >= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int64 >= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Le filters the iterator items to [Foo] whose [Foo.Int64] is less than or equal to the argument.
@@ -6830,13 +6830,13 @@ func (s FooSeq2[T]) Int64Ge(val int64) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int64Le(1)
 func (s FooSlice) Int64Le(val int64) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if v.Int64 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if v.Int64 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Le filters the iterator items to [Foo] whose [Foo.Int64] is less than or equal to the argument.
@@ -6845,13 +6845,13 @@ func (s FooSlice) Int64Le(val int64) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int64Le(1)
 func (m FooMap[T]) Int64Le(val int64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if v.Int64 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if v.Int64 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Le filters the iterator items to [Foo] whose [Foo.Int64] is less than or equal to the argument.
@@ -6860,13 +6860,13 @@ func (m FooMap[T]) Int64Le(val int64) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int64Le(1)
 func (s FooSeq) Int64Le(val int64) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if v.Int64 <= val && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if v.Int64 <= val && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Le filters the iterator items to [Foo] whose [Foo.Int64] is less than or equal to the argument.
@@ -6875,13 +6875,13 @@ func (s FooSeq) Int64Le(val int64) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int64Le(1)
 func (s FooSeq2[T]) Int64Le(val int64) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if v.Int64 <= val && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if v.Int64 <= val && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Matches filters the iterator items to [Foo] whose [Foo.Int64] matches the condition of the argument.
@@ -6890,13 +6890,13 @@ func (s FooSeq2[T]) Int64Le(val int64) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Int64(func(val int64) bool { return i % 2 == 0 })
 func (s FooSlice) Int64Matches(matcher func(int64) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Int64) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Int64) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Matches filters the iterator items to [Foo] whose [Foo.Int64] matches the condition of the argument.
@@ -6905,13 +6905,13 @@ func (s FooSlice) Int64Matches(matcher func(int64) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Int64(func(val int64) bool { return i % 2 == 0 })
 func (m FooMap[T]) Int64Matches(matcher func(int64) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Int64) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Int64) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Matches filters the iterator items to [Foo] whose [Foo.Int64] matches the condition of the argument.
@@ -6920,13 +6920,13 @@ func (m FooMap[T]) Int64Matches(matcher func(int64) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Int64(func(val int64) bool { return i % 2 == 0 })
 func (s FooSeq) Int64Matches(matcher func(int64) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Int64) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Int64) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Int64Matches filters the iterator items to [Foo] whose [Foo.Int64] matches the condition of the argument.
@@ -6935,28 +6935,27 @@ func (s FooSeq) Int64Matches(matcher func(int64) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Int64(func(val int64) bool { return i % 2 == 0 })
 func (s FooSeq2[T]) Int64Matches(matcher func(int64) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Int64) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Int64) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
-
 // Complex64Matches filters the iterator items to [Foo] whose [Foo.Complex64] matches the condition of the argument.
 //
 // Example:
 //
 // 	for k, v := range fooSlice.Complex64(func(v complex64) bool { return true })
 func (s FooSlice) Complex64Matches(matcher func(complex64) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Complex64) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Complex64) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Complex64Matches filters the iterator items to [Foo] whose [Foo.Complex64] matches the condition of the argument.
@@ -6965,13 +6964,13 @@ func (s FooSlice) Complex64Matches(matcher func(complex64) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Complex64(func(v complex64) bool { return true })
 func (m FooMap[T]) Complex64Matches(matcher func(complex64) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Complex64) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Complex64) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Complex64Matches filters the iterator items to [Foo] whose [Foo.Complex64] matches the condition of the argument.
@@ -6980,13 +6979,13 @@ func (m FooMap[T]) Complex64Matches(matcher func(complex64) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Complex64(func(v complex64) bool { return true })
 func (s FooSeq) Complex64Matches(matcher func(complex64) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Complex64) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Complex64) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Complex64Matches filters the iterator items to [Foo] whose [Foo.Complex64] matches the condition of the argument.
@@ -6995,28 +6994,27 @@ func (s FooSeq) Complex64Matches(matcher func(complex64) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Complex64(func(v complex64) bool { return true })
 func (s FooSeq2[T]) Complex64Matches(matcher func(complex64) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Complex64) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Complex64) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
-
 // Complex128Matches filters the iterator items to [Foo] whose [Foo.Complex128] matches the condition of the argument.
 //
 // Example:
 //
 // 	for k, v := range fooSlice.Complex128(func(v complex128) bool { return true })
 func (s FooSlice) Complex128Matches(matcher func(complex128) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Complex128) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Complex128) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Complex128Matches filters the iterator items to [Foo] whose [Foo.Complex128] matches the condition of the argument.
@@ -7025,13 +7023,13 @@ func (s FooSlice) Complex128Matches(matcher func(complex128) bool) FooSeq2[int] 
 //
 // 	for k, v := range fooMap.Complex128(func(v complex128) bool { return true })
 func (m FooMap[T]) Complex128Matches(matcher func(complex128) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Complex128) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Complex128) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // Complex128Matches filters the iterator items to [Foo] whose [Foo.Complex128] matches the condition of the argument.
@@ -7040,13 +7038,13 @@ func (m FooMap[T]) Complex128Matches(matcher func(complex128) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Complex128(func(v complex128) bool { return true })
 func (s FooSeq) Complex128Matches(matcher func(complex128) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Complex128) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Complex128) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // Complex128Matches filters the iterator items to [Foo] whose [Foo.Complex128] matches the condition of the argument.
@@ -7055,13 +7053,13 @@ func (s FooSeq) Complex128Matches(matcher func(complex128) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Complex128(func(v complex128) bool { return true })
 func (s FooSeq2[T]) Complex128Matches(matcher func(complex128) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Complex128) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Complex128) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ErrorIs filters the iterator items to [Foo] whose [Foo.Error] returns true in [errors.Is].
@@ -7070,13 +7068,13 @@ func (s FooSeq2[T]) Complex128Matches(matcher func(complex128) bool) FooSeq2[T] 
 //
 // 	for k, v := range fooSlice.ErrorIs(io.EOF)
 func (s FooSlice) ErrorIs(err error) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if errors.Is(v.Error, err) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if errors.Is(v.Error, err) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ErrorIs filters the iterator items to [Foo] whose [Foo.Error] returns true in [errors.Is].
@@ -7085,13 +7083,13 @@ func (s FooSlice) ErrorIs(err error) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.ErrorIs(io.EOF)
 func (m FooMap[T]) ErrorIs(err error) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if errors.Is(v.Error, err) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if errors.Is(v.Error, err) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ErrorIs filters the iterator items to [Foo] whose [Foo.Error] returns true in [errors.Is].
@@ -7100,13 +7098,13 @@ func (m FooMap[T]) ErrorIs(err error) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.ErrorIs(io.EOF)
 func (s FooSeq) ErrorIs(err error) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if errors.Is(v.Error, err) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if errors.Is(v.Error, err) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // ErrorIs filters the iterator items to [Foo] whose [Foo.Error] returns true in [errors.Is].
@@ -7115,13 +7113,13 @@ func (s FooSeq) ErrorIs(err error) FooSeq {
 //
 // 	for k, v := range fooSeq2.ErrorIs(io.EOF)
 func (s FooSeq2[T]) ErrorIs(err error) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if errors.Is(v.Error, err) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if errors.Is(v.Error, err) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ErrorIsnt filters the iterator items to [Foo] whose [Foo.Error] returns false in [errors.Is].
@@ -7130,13 +7128,13 @@ func (s FooSeq2[T]) ErrorIs(err error) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.ErrorIsnt(io.EOF)
 func (s FooSlice) ErrorIsnt(err error) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if !errors.Is(v.Error, err) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if !errors.Is(v.Error, err) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ErrorIsnt filters the iterator items to [Foo] whose [Foo.Error] returns false in [errors.Is].
@@ -7145,13 +7143,13 @@ func (s FooSlice) ErrorIsnt(err error) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.ErrorIsnt(io.EOF)
 func (m FooMap[T]) ErrorIsnt(err error) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if !errors.Is(v.Error, err) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if !errors.Is(v.Error, err) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ErrorIsnt filters the iterator items to [Foo] whose [Foo.Error] returns false in [errors.Is].
@@ -7160,13 +7158,13 @@ func (m FooMap[T]) ErrorIsnt(err error) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.ErrorIsnt(io.EOF)
 func (s FooSeq) ErrorIsnt(err error) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if !errors.Is(v.Error, err) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if !errors.Is(v.Error, err) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // ErrorIsnt filters the iterator items to [Foo] whose [Foo.Error] returns false in [errors.Is].
@@ -7175,13 +7173,13 @@ func (s FooSeq) ErrorIsnt(err error) FooSeq {
 //
 // 	for k, v := range fooSeq2.ErrorIsnt(io.EOF)
 func (s FooSeq2[T]) ErrorIsnt(err error) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if !errors.Is(v.Error, err) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if !errors.Is(v.Error, err) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ErrorMatches filters the iterator items to [Foo] whose [Foo.Error] matches the condition of the argument.
@@ -7190,13 +7188,13 @@ func (s FooSeq2[T]) ErrorIsnt(err error) FooSeq2[T] {
 //
 // 	for k, v := range fooSlice.Error(func(e error) bool { return true })
 func (s FooSlice) ErrorMatches(matcher func(error) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Error) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Error) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ErrorMatches filters the iterator items to [Foo] whose [Foo.Error] matches the condition of the argument.
@@ -7205,13 +7203,13 @@ func (s FooSlice) ErrorMatches(matcher func(error) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Error(func(e error) bool { return true })
 func (m FooMap[T]) ErrorMatches(matcher func(error) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Error) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Error) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // ErrorMatches filters the iterator items to [Foo] whose [Foo.Error] matches the condition of the argument.
@@ -7220,13 +7218,13 @@ func (m FooMap[T]) ErrorMatches(matcher func(error) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Error(func(e error) bool { return true })
 func (s FooSeq) ErrorMatches(matcher func(error) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Error) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Error) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // ErrorMatches filters the iterator items to [Foo] whose [Foo.Error] matches the condition of the argument.
@@ -7235,28 +7233,27 @@ func (s FooSeq) ErrorMatches(matcher func(error) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Error(func(e error) bool { return true })
 func (s FooSeq2[T]) ErrorMatches(matcher func(error) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Error) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Error) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
-
 // BarMatches filters the iterator items to [Foo] whose [Foo.Bar] matches the condition of the argument.
 //
 // Example:
 //
 // 	for k, v := range fooSlice.Bar(func(v bar.Bar) bool { return true })
 func (s FooSlice) BarMatches(matcher func(bar.Bar) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Bar) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Bar) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // BarMatches filters the iterator items to [Foo] whose [Foo.Bar] matches the condition of the argument.
@@ -7265,13 +7262,13 @@ func (s FooSlice) BarMatches(matcher func(bar.Bar) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Bar(func(v bar.Bar) bool { return true })
 func (m FooMap[T]) BarMatches(matcher func(bar.Bar) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Bar) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Bar) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // BarMatches filters the iterator items to [Foo] whose [Foo.Bar] matches the condition of the argument.
@@ -7280,13 +7277,13 @@ func (m FooMap[T]) BarMatches(matcher func(bar.Bar) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Bar(func(v bar.Bar) bool { return true })
 func (s FooSeq) BarMatches(matcher func(bar.Bar) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Bar) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Bar) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // BarMatches filters the iterator items to [Foo] whose [Foo.Bar] matches the condition of the argument.
@@ -7295,28 +7292,27 @@ func (s FooSeq) BarMatches(matcher func(bar.Bar) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Bar(func(v bar.Bar) bool { return true })
 func (s FooSeq2[T]) BarMatches(matcher func(bar.Bar) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Bar) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Bar) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
-
 // TimeMatches filters the iterator items to [Foo] whose [Foo.Time] matches the condition of the argument.
 //
 // Example:
 //
 // 	for k, v := range fooSlice.Time(func(v time.Time) bool { return true })
 func (s FooSlice) TimeMatches(matcher func(time.Time) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Time) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Time) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // TimeMatches filters the iterator items to [Foo] whose [Foo.Time] matches the condition of the argument.
@@ -7325,13 +7321,13 @@ func (s FooSlice) TimeMatches(matcher func(time.Time) bool) FooSeq2[int] {
 //
 // 	for k, v := range fooMap.Time(func(v time.Time) bool { return true })
 func (m FooMap[T]) TimeMatches(matcher func(time.Time) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.Time) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.Time) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // TimeMatches filters the iterator items to [Foo] whose [Foo.Time] matches the condition of the argument.
@@ -7340,13 +7336,13 @@ func (m FooMap[T]) TimeMatches(matcher func(time.Time) bool) FooSeq2[T] {
 //
 // 	for k, v := range fooSeq.Time(func(v time.Time) bool { return true })
 func (s FooSeq) TimeMatches(matcher func(time.Time) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.Time) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.Time) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // TimeMatches filters the iterator items to [Foo] whose [Foo.Time] matches the condition of the argument.
@@ -7355,28 +7351,27 @@ func (s FooSeq) TimeMatches(matcher func(time.Time) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.Time(func(v time.Time) bool { return true })
 func (s FooSeq2[T]) TimeMatches(matcher func(time.Time) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.Time) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.Time) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
-
 // NullStringMatches filters the iterator items to [Foo] whose [Foo.NullString] matches the condition of the argument.
 //
 // Example:
 //
 // 	for k, v := range fooSlice.NullString(func(v s.NullString) bool { return true })
 func (s FooSlice) NullStringMatches(matcher func(s.NullString) bool) FooSeq2[int] {
-	return func(yield func(int, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.NullString) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(int, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.NullString) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // NullStringMatches filters the iterator items to [Foo] whose [Foo.NullString] matches the condition of the argument.
@@ -7385,13 +7380,13 @@ func (s FooSlice) NullStringMatches(matcher func(s.NullString) bool) FooSeq2[int
 //
 // 	for k, v := range fooMap.NullString(func(v s.NullString) bool { return true })
 func (m FooMap[T]) NullStringMatches(matcher func(s.NullString) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range m {
-			if matcher(v.NullString) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range m {
+            if matcher(v.NullString) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // NullStringMatches filters the iterator items to [Foo] whose [Foo.NullString] matches the condition of the argument.
@@ -7400,13 +7395,13 @@ func (m FooMap[T]) NullStringMatches(matcher func(s.NullString) bool) FooSeq2[T]
 //
 // 	for k, v := range fooSeq.NullString(func(v s.NullString) bool { return true })
 func (s FooSeq) NullStringMatches(matcher func(s.NullString) bool) FooSeq {
-	return func(yield func(Foo) bool) {
-		for v := range s {
-			if matcher(v.NullString) && !yield(v) {
-				break
-			}
-		}
-	}
+    return func(yield func(Foo) bool) {
+        for v := range s {
+            if matcher(v.NullString) && !yield(v) {
+                break
+            }
+        }
+    }
 }
 
 // NullStringMatches filters the iterator items to [Foo] whose [Foo.NullString] matches the condition of the argument.
@@ -7415,13 +7410,13 @@ func (s FooSeq) NullStringMatches(matcher func(s.NullString) bool) FooSeq {
 //
 // 	for k, v := range fooSeq2.NullString(func(v s.NullString) bool { return true })
 func (s FooSeq2[T]) NullStringMatches(matcher func(s.NullString) bool) FooSeq2[T] {
-	return func(yield func(T, Foo) bool) {
-		for k, v := range s {
-			if matcher(v.NullString) && !yield(k, v) {
-				break
-			}
-		}
-	}
+    return func(yield func(T, Foo) bool) {
+        for k, v := range s {
+            if matcher(v.NullString) && !yield(k, v) {
+                break
+            }
+        }
+    }
 }
 
 // BazSlice is a defined-type of []Baz.
