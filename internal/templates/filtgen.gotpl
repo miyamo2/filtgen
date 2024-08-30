@@ -9,7 +9,7 @@ import (
 {{- end}}
 )
 {{ range $strct := .Structs }}
-// {{.Name}}Slice is a defined-type of []User.
+// {{.Name}}Slice is a defined-type of []{{.Name}}.
 // If a filter is to be performed, a cast to this type is necessary.
 //
 // Example:
@@ -17,7 +17,7 @@ import (
 //  {{.Name}}Slice([]{{.Name}}{}).FooEq("bar").
 type {{.Name}}Slice []{{.Name}}
 
-// {{.Name}}Map is a defined-type of []{{.Name}}.
+// {{.Name}}Map is a defined-type of map[T]{{.Name}}.
 // If a filter is to be performed, a cast to this type is necessary.
 //
 // Example:
