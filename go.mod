@@ -1,11 +1,11 @@
 module github.com/miyamo2/filtgen
 
-go 1.23
+go 1.25.0
 
 require (
 	github.com/iancoleman/strcase v0.3.0
 	github.com/spf13/cobra v1.8.1
-	golang.org/x/tools v0.30.0
+	golang.org/x/tools v0.43.0
 )
 
 require (
